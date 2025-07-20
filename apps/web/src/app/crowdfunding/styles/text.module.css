@@ -1,0 +1,49 @@
+.setup {
+    /* text-preset-2 */
+    --font-size-2: 28px;
+    --font-style-2: normal;
+    --font-weight-2: 700;
+    --line-height-2: 125%; /* 35px */
+
+    /* text-preset-6 */
+    --font-size-6: 16px;
+    --font-style-6: normal;
+    --font-weight-6: 400;
+    --line-height-6: 200%; /* 32px */
+
+    /* text-preset-1 */
+    --font-size-1: 32px;
+    --font-style-1: normal;
+    --font-weight-1: 700;
+    --line-height-1--: 125%; /* 40px */
+
+    /* text-preset-7 */
+    --font-size-7: 15px;
+    --font-style-7: normal;
+    --font-weight-7: 400;
+    --line-height-7: 200%; /* 30px */
+
+    /* text-preset-4 */
+    --font-size-4: 20px;
+    --font-style-4: normal;
+    --font-weight-4: 700;
+    --line-height-4: 125%; /* 25px */
+
+    /* text-preset-5 */
+    --font-size-5: 18px;
+    --font-style-5: normal;
+    --font-weight-5: 700;
+    --line-height-5: 125%; /* 22.5px */
+
+    /* text-preset-8 */
+    --font-size-8: 14px;
+    --font-style-8: normal;
+    --font-weight-8: 700;
+    --line-height-8: 125%; /* 17.5px */
+
+    /* text-preset-9 */
+    --font-size-9: 13px;
+    --font-style-9: normal;
+    --font-weight-9: 500;
+    --line-height-9: 125%; /* 16.25px */
+}

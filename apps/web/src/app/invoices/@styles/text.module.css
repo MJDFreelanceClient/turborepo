@@ -1,0 +1,36 @@
+.setup {
+    /* text-preset-1 */
+    --font-size-1: 36px;
+    --font-style-1: normal;
+    --font-weight-1: 700;
+    --line-height-1: normal;
+    --letter-spacing-1: -1.125px;
+
+    /* text-preset-2 */
+    --font-size-2: 13px;
+    --font-style-2: normal;
+    --font-weight-2: 500;
+    --line-height-2: 15px; /* 115.385% */
+    --letter-spacing-2: -0.1px;
+
+    /* text-preset-3 */
+    --font-size-3: 15px;
+    --font-style-3: normal;
+    --font-weight-3: 700;
+    --line-height-3: 15px; /* 100% */
+    --letter-spacing-3: -0.25px;
+
+    /* text-preset-4 */
+    --font-size-4: 24px;
+    --font-style-4: normal;
+    --font-weight-4: 700;
+    --line-height-4: normal;
+    --letter-spacing-4: -0.75px;
+
+    /* text-preset-5 */
+    --font-size-5: 24px;
+    --font-style-5: normal;
+    --font-weight-5: 700;
+    --line-height-5: 32px; /* 133.333% */
+    --letter-spacing-5: -0.5px;
+}

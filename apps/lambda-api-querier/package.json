@@ -1,0 +1,19 @@
+{
+  "name": "lambda-api-querier",
+  "version": "0.1.0",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "node src/index.js",
+    "start": "node src/index.js"
+  },
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.840.0",
+    "@aws-sdk/credential-providers": "^3.840.0",
+    "@aws-sdk/lib-dynamodb": "^3.840.0",
+    "@aws-sdk/util-dynamodb": "^3.840.0",
+    "algoliasearch": "^4.20.0",
+    "dotenv": "^17.0.1",
+    "node-fetch": "^3.3.2"
+  },
+  "type": "module"
+}

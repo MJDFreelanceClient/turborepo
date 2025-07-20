@@ -1,0 +1,16 @@
+{
+  "name": "lambda-algolia-sync",
+  "tables": [
+    {
+      "name": "products",
+      "permissions": ["read", "write"],
+      "isStreamHandler": true
+    },
+    {
+      "name": "food",
+      "permissions": ["read", "write"],
+      "isStreamHandler": true
+    }
+  ],
+  "layers": ["algolia-client", "dynamo-client"]
+}

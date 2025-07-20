@@ -1,0 +1,43 @@
+.setup {
+    /* text-preset-1 */
+    --font-size-1: 32px;
+    --font-style-1: normal;
+    --font-weight-1: 800;
+    --line-height-1: 137.5%; /* 44px */
+
+    /* text-preset-2 */
+    --font-size-2: 24px;
+    --font-style-2: normal;
+    --font-weight-2: 800;
+    --line-height-2: 137.5%; /* 33px */
+
+    /* text-preset-3 */
+    --font-size-3: 18px;
+    --font-style-3: normal;
+    --font-weight-3: 800;
+    --line-height-3: 145%; /* 26.1px */
+
+    /* text-preset-4 */
+    --font-size-4: 16px;
+    --font-style-4: normal;
+    --font-weight-4: 600;
+    --line-height-4: 200%; /* 32px */
+
+    /* text-preset-5 */
+    --font-size-5: 14px;
+    --font-style-5: normal;
+    --font-weight-5: 400;
+    --line-height-5: 145%; /* 20.3px */
+
+    /* text-preset-6 */
+    --font-size-6: 14px;
+    --font-style-6: normal;
+    --font-weight-6: 600;
+    --line-height-6: 16px; /* 114.286% */
+
+    /* text-preset-2 mobile */
+    --font-size-mobile2: 14px;
+    --font-style-mobile2: normal;
+    --font-weight-mobile2: 800;
+    --line-height-mobile2: 20px; /* 142.857% */
+}

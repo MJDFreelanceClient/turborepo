@@ -1,0 +1,22 @@
+{
+  "name": "algolia-client",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@types/algoliasearch": "^4.0.4",
+    "@types/node": "^24.0.10",
+    "if": "^2.0.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "algoliasearch": "4"
+  }
+}

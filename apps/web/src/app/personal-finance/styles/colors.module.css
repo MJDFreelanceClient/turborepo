@@ -1,0 +1,45 @@
+.setup {
+    --color-beige-100: hsla(30, 36%, 96%, 1);
+
+    --color-gray-100: hsla(0, 0%, 95%, 1);
+    --color-gray-300: hsla(0, 0%, 70%, 1);
+    --color-gray-500: hsla(0, 0%, 41%, 1);
+    --color-gray-900: hsla(252, 7%, 13%, 1);
+
+    --color-neutral-500: hsla(0, 0%, 41%, .15);
+
+    --color-green-500: hsla(177, 52%, 32%, 1);
+
+    --color-cyan-500: hsla(190, 52%, 68%, 1);
+
+    --color-yellow-500: hsla(28, 73%, 81%, 1);
+
+    --color-navy-500: hsla(248, 8%, 41%, 1);
+
+    --color-red-900: hsla(7, 58%, 50%, 1);
+}
+
+.theme[data-theme="#277C78"] {
+    --color-theme: var(--color-green-500);
+    --color-primary: var(--color-green-500);
+}
+
+.theme[data-theme="#82C9D7"] {
+    --color-theme: var(--color-cyan-500);
+    --color-primary: var(--color-cyan-500);
+}
+
+.theme[data-theme="#F2CDAC"] {
+    --color-theme: var(--color-yellow-500);
+    --color-primary: var(--color-yellow-500);
+}
+
+.theme[data-theme="#626070"] {
+    --color-theme: var(--color-navy-500);
+    --color-primary: var(--color-navy-500);
+}
+
+.theme[data-theme="#826CB0"] {
+    --color-theme: #826CB0;
+    --color-primary: #826CB0;
+}

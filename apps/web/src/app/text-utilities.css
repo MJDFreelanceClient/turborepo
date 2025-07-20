@@ -1,0 +1,310 @@
+@utility text-preset-1 {
+    font-weight: var(--font-weight-1);
+    font-size: var(--font-size-1);
+    line-height: var(--line-height-1);
+    letter-spacing: var(--letter-spacing-1);
+}
+
+@utility text-preset-2 {
+    font-weight: var(--font-weight-2);
+    font-size: var(--font-size-2);
+    line-height: var(--line-height-2);
+    letter-spacing: var(--letter-spacing-2);
+}
+
+@utility text-preset-3 {
+    font-weight: var(--font-weight-3);
+    font-size: var(--font-size-3);
+    line-height: var(--line-height-3);
+    letter-spacing: var(--letter-spacing-3);
+}
+
+@utility text-preset-4 {
+    font-weight: var(--font-weight-4);
+    font-size: var(--font-size-4);
+    line-height: var(--line-height-4);
+    letter-spacing: var(--letter-spacing-4);
+}
+
+@utility text-preset-5 {
+    font-weight: var(--font-weight-5);
+    font-size: var(--font-size-5);
+    line-height: var(--line-height-5);
+    letter-spacing: var(--letter-spacing-5);
+}
+
+@utility text-preset-6 {
+    font-weight: var(--font-weight-6);
+    font-size: var(--font-size-6);
+    line-height: var(--line-height-6);
+    letter-spacing: var(--letter-spacing-6);
+}
+
+@utility text-preset-7 {
+    font-weight: var(--font-weight-7);
+    font-size: var(--font-size-7);
+    line-height: var(--line-height-7);
+    letter-spacing: var(--letter-spacing-7);
+}
+
+@utility text-preset-8 {
+    font-weight: var(--font-weight-8);
+    font-size: var(--font-size-8);
+    line-height: var(--line-height-8);
+    letter-spacing: var(--letter-spacing-8);
+}
+
+@utility text-preset-9 {
+    font-weight: var(--font-weight-9);
+    font-size: var(--font-size-9);
+    line-height: var(--line-height-9);
+    letter-spacing: var(--letter-spacing-9);
+}
+
+@utility text-preset-h1 {
+    font-weight: var(--font-weight-h1);
+    font-size: var(--font-size-h1);
+    line-height: var(--line-height-h1);
+    letter-spacing: var(--letter-spacing-h1);
+}
+
+@utility text-preset-h2 {
+    font-weight: var(--font-weight-h2);
+    font-size: var(--font-size-h2);
+    line-height: var(--line-height-h2);
+    letter-spacing: var(--letter-spacing-h2);
+}
+
+@utility text-preset-h3 {
+    font-weight: var(--font-weight-h3);
+    font-size: var(--font-size-h3);
+    line-height: var(--line-height-h3);
+    letter-spacing: var(--letter-spacing-h3);
+}
+
+@utility text-preset-h4 {
+    font-weight: var(--font-weight-h4);
+    font-size: var(--font-size-h4);
+    line-height: var(--line-height-h4);
+    letter-spacing: var(--letter-spacing-h4);
+}
+
+
+
+
+@utility text-tablet-1 {
+    font-weight: var(--font-weight-tablet1);
+    font-size: var(--font-size-tablet1);
+    line-height: var(--line-height-tablet1);
+    letter-spacing: var(--letter-spacing-tablet1);
+}
+
+@utility text-tablet-2 {
+    font-weight: var(--font-weight-tablet2);
+    font-size: var(--font-size-tablet2);
+    line-height: var(--line-height-tablet2);
+    letter-spacing: var(--letter-spacing-tablet2);
+}
+
+@utility text-tablet-3 {
+    font-weight: var(--font-weight-tablet3);
+    font-size: var(--font-size-tablet3);
+    line-height: var(--line-height-tablet3);
+    letter-spacing: var(--letter-spacing-tablet3);
+}
+
+@utility text-tablet-4 {
+    font-weight: var(--font-weight-tablet4);
+    font-size: var(--font-size-tablet4);
+    line-height: var(--line-height-tablet4);
+    letter-spacing: var(--letter-spacing-tablet4);
+}
+
+@utility text-tablet-5 {
+    font-weight: var(--font-weight-tablet5);
+    font-size: var(--font-size-tablet5);
+    line-height: var(--line-height-tablet5);
+    letter-spacing: var(--letter-spacing-tablet5);
+}
+
+@utility text-tablet-6 {
+    font-weight: var(--font-weight-tablet6);
+    font-size: var(--font-size-tablet6);
+    line-height: var(--line-height-tablet6);
+    letter-spacing: var(--letter-spacing-tablet6);
+}
+
+@utility text-tablet-7 {
+    font-weight: var(--font-weight-tablet7);
+    font-size: var(--font-size-tablet7);
+    line-height: var(--line-height-tablet7);
+    letter-spacing: var(--letter-spacing-tablet7);
+}
+
+@utility text-tablet-8 {
+    font-weight: var(--font-weight-tablet8);
+    font-size: var(--font-size-tablet8);
+    line-height: var(--line-height-tablet8);
+    letter-spacing: var(--letter-spacing-tablet8);
+}
+
+@utility text-tablet-9 {
+    font-weight: var(--font-weight-tablet9);
+    font-size: var(--font-size-tablet9);
+    line-height: var(--line-height-tablet9);
+    letter-spacing: var(--letter-spacing-tablet9);
+}
+
+@utility text-tablet-h1 {
+    font-weight: var(--font-weight-tableth1);
+    font-size: var(--font-size-tableth1);
+    line-height: var(--line-height-tableth1);
+    letter-spacing: var(--letter-spacing-tableth1);
+}
+
+@utility text-tablet-h2 {
+    font-weight: var(--font-weight-tableth2);
+    font-size: var(--font-size-tableth2);
+    line-height: var(--line-height-tableth2);
+    letter-spacing: var(--letter-spacing-tableth2);
+}
+
+@utility text-tablet-h3 {
+    font-weight: var(--font-weight-tableth3);
+    font-size: var(--font-size-tableth3);
+    line-height: var(--line-height-tableth3);
+    letter-spacing: var(--letter-spacing-tableth3);
+}
+
+@utility text-tablet-h4 {
+    font-weight: var(--font-weight-tableth4);
+    font-size: var(--font-size-tableth4);
+    line-height: var(--line-height-tableth4);
+    letter-spacing: var(--letter-spacing-tableth4);
+}
+
+
+
+@utility text-mobile-1 {
+    font-weight: var(--font-weight-mobile1);
+    font-size: var(--font-size-mobile1);
+    line-height: var(--line-height-mobile1);
+    letter-spacing: var(--letter-spacing-mobile1);
+}
+
+@utility text-mobile-2 {
+    font-weight: var(--font-weight-mobile2);
+    font-size: var(--font-size-mobile2);
+    line-height: var(--line-height-mobile2);
+    letter-spacing: var(--letter-spacing-mobile2);
+}
+
+@utility text-mobile-3 {
+    font-weight: var(--font-weight-mobile3);
+    font-size: var(--font-size-mobile3);
+    line-height: var(--line-height-mobile3);
+    letter-spacing: var(--letter-spacing-mobile3);
+}
+
+@utility text-mobile-4 {
+    font-weight: var(--font-weight-mobile4);
+    font-size: var(--font-size-mobile4);
+    line-height: var(--line-height-mobile4);
+    letter-spacing: var(--letter-spacing-mobile4);
+}
+
+@utility text-mobile-5 {
+    font-weight: var(--font-weight-mobile5);
+    font-size: var(--font-size-mobile5);
+    line-height: var(--line-height-mobile5);
+    letter-spacing: var(--letter-spacing-mobile5);
+}
+
+@utility text-mobile-6 {
+    font-weight: var(--font-weight-mobile6);
+    font-size: var(--font-size-mobile6);
+    line-height: var(--line-height-mobile6);
+    letter-spacing: var(--letter-spacing-mobile6);
+}
+
+@utility text-mobile-7 {
+    font-weight: var(--font-weight-mobile7);
+    font-size: var(--font-size-mobile7);
+    line-height: var(--line-height-mobile7);
+    letter-spacing: var(--letter-spacing-mobile7);
+}
+
+@utility text-mobile-8 {
+    font-weight: var(--font-weight-mobile8);
+    font-size: var(--font-size-mobile8);
+    line-height: var(--line-height-mobile8);
+    letter-spacing: var(--letter-spacing-mobile8);
+}
+
+@utility text-mobile-9 {
+    font-weight: var(--font-weight-mobile9);
+    font-size: var(--font-size-mobile9);
+    line-height: var(--line-height-mobile9);
+    letter-spacing: var(--letter-spacing-mobile9);
+}
+
+@utility text-mobile-h1 {
+    font-weight: var(--font-weight-mobileh1);
+    font-size: var(--font-size-mobileh1);
+    line-height: var(--line-height-mobileh1);
+    letter-spacing: var(--letter-spacing-mobileh1);
+}
+
+@utility text-mobile-h2 {
+    font-weight: var(--font-weight-mobileh2);
+    font-size: var(--font-size-mobileh2);
+    line-height: var(--line-height-mobileh2);
+    letter-spacing: var(--letter-spacing-mobileh2);
+}
+
+@utility text-mobile-h3 {
+    font-weight: var(--font-weight-mobileh3);
+    font-size: var(--font-size-mobileh3);
+    line-height: var(--line-height-mobileh3);
+    letter-spacing: var(--letter-spacing-mobileh3);
+}
+
+@utility text-mobile-h4 {
+    font-weight: var(--font-weight-mobileh4);
+    font-size: var(--font-size-mobileh4);
+    line-height: var(--line-height-mobileh4);
+    letter-spacing: var(--letter-spacing-mobileh4);
+}
+
+
+
+
+@theme {
+    --overlay-color-1: black;
+}
+
+@utility overlay {
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+        content: "";
+        position: absolute;
+        inset:0;
+        opacity: 0;
+    }
+}
+
+@utility overlay-* {
+    &::before {
+        background: --value(--color-*);
+        opacity: 1;
+    }
+}
+
+@utility overlay-bg {
+    > * {
+        position: relative;
+        z-index: 1;
+    }
+}

@@ -1,0 +1,25 @@
+.setup {
+    --color-purple-100: hsla(252, 94%, 67%, 1);
+    --color-purple-200: hsla(252, 100%, 73%, 1);
+    --color-purple-300: hsla(233, 31%, 17%, 1);
+    --color-purple-600: hsla(231, 20%, 61%, 1);
+    --color-purple-700: hsla(231, 36%, 63%, 1);
+    --color-purple-800: hsla(231, 28%, 7%, 1);
+    --color-purple-900: hsla(231, 30%, 11%, 1);
+
+    --color-orange-500: hsla(34, 100%, 50%, 1);
+
+    --color-neutral-100: hsla(240, 27%, 98%, 1);
+    --color-neutral-200: hsla(231, 67%, 99%, 1);
+    --color-neutral-400: hsla(233, 30%, 21%, 1);
+    --color-neutral-500: hsla(231, 75%, 93%, 1);
+    --color-neutral-300: hsla(231, 23%, 61%, 1);
+    --color-neutral-900: hsla(231, 20%, 27%, 1);
+    --color-neutral-800: hsla(231, 20%, 36%, 1);
+    --color-neutral-700: hsla(233, 30%, 11%, 1);
+
+    --color-green-500: hsla(160, 67%, 52%, 1);
+
+    --color-red-500: hsla(0, 80%, 63%, 1);
+
+}

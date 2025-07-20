@@ -1,0 +1,33 @@
+.setup {
+    font-family: PublicSans, sans-serif;
+
+    /* text-preset-1 */
+    --font-size-1: var(--font-size-text-preset-1, 32px);
+    --font-style-1: normal;
+    --font-weight-1: 700;
+    --line-height-1: 120%; /* 38.4px */
+
+    /* text-preset-4 */
+    --font-size-4: var(--font-size-text-preset-4, 14px);
+    --font-style-4: normal;
+    --font-weight-4: 400;
+    --line-height-4: 150%; /* 21px */
+
+    /* text-preset-2 */
+    --font-size-2: var(--font-size-text-preset-2, 20px);
+    --font-style-2: normal;
+    --font-weight-2: 700;
+    --line-height-2: 120%; /* 24px */
+
+    /* text-preset-3 */
+    --font-size-3: var(--font-size-text-preset-3, 16px);
+    --font-style-3: normal;
+    --font-weight-3: 700;
+    --line-height-3: 150%; /* 24px */
+
+    /* text-preset-5 */
+    --font-size-5: var(--font-size-text-preset-5, 12px);
+    --font-style-5: normal;
+    --font-weight-5: 400;
+    --line-height-5: 150%; /* 18px */
+}

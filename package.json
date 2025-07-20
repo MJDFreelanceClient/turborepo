@@ -1,0 +1,26 @@
+{
+  "packageManager": "pnpm@8.15.4",
+  "name": "my-monorepo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare:lambda:test": "node scripts/copyForDeploy.js",
+    "prepare:layer:number-stuff": "node scripts/copyLayersForDeploy.js",
+    "cdk-synth": "pnpm --filter cdk run synth",
+    "cdk-deploy": "pnpm --filter cdk run deploy",
+    "web-dev": "pnpm --filter web run dev"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "turbo": "^2.5.4"
+  },
+  "dependencies": {
+    "child_process": "^1.0.2",
+    "fs-extra": "^11.3.0",
+    "path": "^0.12.7"
+  }
+}

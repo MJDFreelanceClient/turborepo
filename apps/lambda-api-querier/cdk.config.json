@@ -1,0 +1,10 @@
+{
+  "name": "lambda-api-querier",
+  "tables": [
+    {
+      "name": "food",
+      "permissions": ["read", "write"]
+    }
+  ],
+  "layers": ["dynamo-client"]
+}

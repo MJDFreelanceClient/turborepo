@@ -1,0 +1,25 @@
+.font[data-font='serif'] {
+    font-family: 'Merriweather', serif;
+}
+
+.font[data-font='sans'] {
+    font-family: 'PublicSans', sans-serif;
+}
+
+.font[data-font='monospace'] {
+    font-family: 'FiraCode', monospace;
+}
+
+.setup {
+    /* text-preset-1 */
+    --font-size-1: 64px;
+    --font-style-1: normal;
+    --font-weight-1: 700;
+    --line-height-1: normal;
+
+    /* text-preset-2 */
+    --font-size-2: 24px;
+    --font-style-2: normal;
+    --font-weight-2: 400;
+    --line-height-2: normal;
+}
