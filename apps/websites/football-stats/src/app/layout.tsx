@@ -12,6 +12,7 @@ import "./globals.css";
 import { cookies } from "next/headers";
 import CreatePDF from "@/components/CreatePDF";
 import {Toaster} from "sonner";
+import {ShareModal} from "@/components/ShareModal";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -40,8 +41,10 @@ export default async function RootLayout({
             <ClerkProvider>
                 <html lang="en">
                 <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+
                 {children}
                 <Toaster richColors /> {/* 👈 Mount once at the root */}
+
                 </body>
                 </html>
             </ClerkProvider>
@@ -72,6 +75,7 @@ export default async function RootLayout({
 
               {children}
               <Toaster richColors /> {/* 👈 Mount once at the root */}
+          <ShareModal />
           </body>
           </html>
       </ClerkProvider>

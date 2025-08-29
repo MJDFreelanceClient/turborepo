@@ -16,7 +16,7 @@ export const ShareModal = () => {
                     text: "Check out this PDF!",
                     files: [file!],
                 });
-                modalStore.setState(undefined); // auto-close
+                //modalStore.setState(undefined); // auto-close
             } catch (err) {
                 console.error("Share failed:", err);
             }
@@ -34,11 +34,11 @@ export const ShareModal = () => {
         a.click();
         URL.revokeObjectURL(url);
 
-        modalStore.setState(undefined); // auto-close
+        //modalStore.setState(undefined); // auto-close
     };
 
     return (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+        <div className="fixed inset-0 bg-black/80 flex items-center justify-center">
             <div className="bg-white rounded-xl p-6 shadow-lg">
                 <h2 className="text-lg font-semibold mb-4">Your PDF is ready!</h2>
                 <div className="flex gap-4">
@@ -59,7 +59,7 @@ export const ShareModal = () => {
                     onClick={() =>
                         modalStore.setState(undefined)
                     }
-                    className="mt-4 text-sm text-gray-500"
+                    className="mt-4 text-sm text-gray-500 cursor-pointer"
                 >
                     Close
                 </button>
