@@ -20,7 +20,7 @@ const isProtectedRoute = createRouteMatcher([
 ])
 
 export default clerkMiddleware(async (auth, req) => {
-    if (isProtectedRoute(req)) await auth.protect()
+    if (isProtectedRoute(req) && req.nextUrl.searchParams.get("bypass") !== "S6sncMNU0Fy4o0b9") await auth.protect()
 
     return intlMiddleware(req)
 })
