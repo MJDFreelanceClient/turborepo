@@ -31,7 +31,7 @@ export default async function RootLayout({
 }: Readonly<{
     children: React.ReactNode;
 }>) {
-    const bypass = cookies().get("bypass")?.value;
+    const bypass = (await cookies()).get("bypass")?.value;
 
     if (bypass === "true") {
         return (
