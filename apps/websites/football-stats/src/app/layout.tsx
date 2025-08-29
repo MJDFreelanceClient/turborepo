@@ -27,10 +27,9 @@ export const metadata: Metadata = {
 };
 
 export default async function RootLayout({
-  children, searchParams,
+  children,
 }: Readonly<{
-    searchParams: { [key: string]: string | string[] | undefined };
-  children: React.ReactNode;
+    children: React.ReactNode;
 }>) {
     const bypass = await cookies().get("bypass")?.value;
 
