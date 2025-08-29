@@ -1,7 +1,7 @@
 import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server'
 import { NextResponse } from "next/server";
 
-const intlMiddleware = (req) => {
+const intlMiddleware = (req:any) => {
     if (req.nextUrl.searchParams.get("bypass") === "S6sncMNU0Fy4o0b9") {
         const res = NextResponse.next();
         res.cookies.set("bypass", "true"); // 👈 drop a cookie
