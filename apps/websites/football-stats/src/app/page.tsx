@@ -5,7 +5,7 @@ import {ClerkProvider, SignedIn} from "@clerk/nextjs";
 import {cookies} from "next/headers";
 import {Toaster} from "sonner";
 
-export default function Home() {
+export default async function Home() {
     const bypass = (await cookies()).get("bypass")?.value;
 
     if (bypass === "true") {
