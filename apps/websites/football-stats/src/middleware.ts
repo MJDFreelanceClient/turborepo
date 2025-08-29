@@ -14,7 +14,10 @@ const intlMiddleware = (req:any) => {
     }
 }
 
-const isProtectedRoute = createRouteMatcher(['dashboard/(.*)'])
+const isProtectedRoute = createRouteMatcher([
+    // Protect everything…
+    '/',
+])
 
 export default clerkMiddleware(async (auth, req) => {
     if (isProtectedRoute(req)) await auth.protect()

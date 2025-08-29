@@ -35,8 +35,7 @@ export default async function RootLayout({
 }>) {
     const bypass = (await cookies()).get("bypass")?.value;
 
-    //if (bypass === "true") {
-    if (bypass || !bypass) {
+    if (bypass === "true") {
         return (
             <ClerkProvider>
                 <html lang="en">
@@ -50,7 +49,10 @@ export default async function RootLayout({
     }
 
   return (
-      <ClerkProvider>
+      <ClerkProvider
+          signInUrl="/"
+          signUpUrl="/sign-up"
+      >
           <html lang="en">
           <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
           <header className="flex justify-end items-center p-4 gap-4 h-16">
@@ -63,17 +65,13 @@ export default async function RootLayout({
                   </SignUpButton>
               </SignedOut>
               <SignedIn>
+                  <CreatePDF />
                   <UserButton />
               </SignedIn>
           </header>
 
-          <SignedOut>
-              <SignIn routing="hash" />
-          </SignedOut>
-          <SignedIn>
               {children}
               <Toaster richColors /> {/* 👈 Mount once at the root */}
-          </SignedIn>
           </body>
           </html>
       </ClerkProvider>
