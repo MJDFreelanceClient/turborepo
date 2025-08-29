@@ -1,0 +1,16 @@
+.setup {
+    --color-blue-800: hsla(215, 32%, 27%, 1);
+
+    --color-blue-900: hsla(216, 50%, 16%, 1);
+
+    --color-black: hsla(0, 0%, 0%, 1);
+
+    --color-cyan-400: hsla(178, 100%, 50%, 1);
+
+    --color-white: hsla(0, 0%, 100%, 1);
+
+    --color-blue-500: hsla(215, 51%, 70%, 1);
+
+    --color-blue-950: hsla(217, 54%, 11%, 1);
+
+}

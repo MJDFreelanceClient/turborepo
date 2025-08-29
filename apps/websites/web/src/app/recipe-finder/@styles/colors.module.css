@@ -1,0 +1,23 @@
+.setup {
+    --color-neutral-100: hsla(48, 22%, 95%, 1);
+
+    --color-neutral-300: hsla(150, 11%, 89%, 1);
+
+    --color-neutral-400: hsla(165, 15%, 84%, 1);
+
+    --color-teal-500: hsla(170, 40%, 48%, 1);
+
+    --color-neutral-200: hsla(108, 12%, 92%, 1);
+
+    --color-neutral-0: hsla(0, 0%, 100%, 1);
+
+    --color-indigo-500: hsla(229, 61%, 64%, 1);
+
+    --color-orange-500: hsla(21, 99%, 71%, 1);
+
+    --color-neutral-800: hsla(168, 21%, 28%, 1);
+
+    --color-neutral-900: hsla(170, 45%, 16%, 1);
+
+
+}

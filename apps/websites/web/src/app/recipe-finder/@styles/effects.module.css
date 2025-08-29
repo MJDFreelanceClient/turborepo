@@ -1,0 +1,36 @@
+.setup {
+
+}
+
+.customMarker::before {
+    content: "";
+    height: 20px;
+    width: 20px;
+}
+
+.customMarkerLarge::before {
+    content: "";
+
+    height: 32px;
+    width: 32px;
+}
+
+.servings::before {
+    background: url('/recipe-finder/images/icon-servings.svg') !important;
+}
+
+.prep::before {
+    background: url('/recipe-finder/images/icon-prep-time.svg') !important;
+}
+
+.cook::before {
+    background: url('/recipe-finder/images/icon-cook-time.svg') !important;
+}
+
+.exist::before {
+    background: url('/recipe-finder/images/icon-bullet-point.svg') !important;
+}
+
+.usp {
+    box-shadow: 0 1px 0 0 var(--colors-neutral-200, #E9EDE8);
+}

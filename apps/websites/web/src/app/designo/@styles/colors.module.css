@@ -1,0 +1,5 @@
+.setup {
+    --color-primary: hsla(10, 72%, 66%, 1);
+    --color-neutral-950: hsla(264, 4%, 11%, 1);
+    --color-neutral-800: hsla(264, 5%, 20%, 1);
+}

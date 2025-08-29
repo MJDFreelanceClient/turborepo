@@ -1,4 +1,6 @@
 packages:
   - "apps/*"
+  - "apps/functions/*"
+  - "apps/websites/*"
   - "packages/*"
   - "infra/*"

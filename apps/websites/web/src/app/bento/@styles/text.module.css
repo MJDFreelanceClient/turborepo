@@ -1,0 +1,131 @@
+@font-face {
+    font-family: 'DM Sans';
+    src: url('https://mjdfreelanceclient.github.io/my-font-server/fonts/DMSans/DMSans-VariableFont_opsz,wght.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+.setup {
+
+    /* text-preset-desktop1 */
+    /* Desktop/text-preset-1 */
+    --font-family-desktop1: "DM Sans";
+    --font-size-desktop1: 62px;
+    --font-style-desktop1: normal;
+    --font-weight-desktop1: 500;
+    --line-height-desktop1: 58px; /* 93.548% */
+    --letter-spacing-desktop1: -3px;
+
+    /* text-preset-tablet1 */
+    /* Tablet/text-preset-1 */
+    --font-family-tablet1: "DM Sans";
+    --font-size-tablet1: 54px;
+    --font-style-tablet1: normal;
+    --font-weight-tablet1: 500;
+    --line-height-tablet1: 48px; /* 88.889% */
+    --letter-spacing-tablet1: -2.16px;
+
+    /* text-preset-1 */
+    /* Mobile/text-preset-1 */
+    --font-family-1: "DM Sans";
+    --font-size-1: 46px;
+    --font-style-1: normal;
+    --font-weight-1: 500;
+    --line-height-1: 42px; /* 91.304% */
+    --letter-spacing-1: -1.84px;
+
+    /* text-preset-desktop2 */
+    /* Desktop/text-preset-2 */
+    --font-family-desktop2: "DM Sans";
+    --font-size-desktop2: 40px;
+    --font-style-desktop2: normal;
+    --font-weight-desktop2: 500;
+    --line-height-desktop2: 36px; /* 90% */
+    --letter-spacing-desktop2: -2px;
+
+    /* text-preset-tablet2 */
+    /* Tablet/text-preset-2 */
+    --font-family-tablet2: "DM Sans";
+    --font-size-tablet2: 36px;
+    --font-style-tablet2: normal;
+    --font-weight-tablet2: 500;
+    --line-height-tablet2: 30px; /* 83.333% */
+    --letter-spacing-tablet2: -2.16px;
+
+    /* text-preset-2 */
+    /* Mobile/text-preset-2 */
+    --font-family-2: "DM Sans";
+    --font-size-2: 32px;
+    --font-style-2: normal;
+    --font-weight-2: 500;
+    --line-height-2: 28px; /* 87.5% */
+    --letter-spacing-2: -1.92px;
+
+    /* text-preset-desktop3 */
+    /* Desktop/text-preset-3 */
+    --font-family-desktop3: "DM Sans";
+    --font-size-desktop3: 32px;
+    --font-style-desktop3: normal;
+    --font-weight-desktop3: 500;
+    --line-height-desktop3: 28px; /* 87.5% */
+    --letter-spacing-desktop3: -2px;
+
+    /* text-preset-tablet3 */
+    /* Tablet/text-preset-3 */
+    --font-family-tablet3: "DM Sans";
+    --font-size-tablet3: 28px;
+    --font-style-tablet3: normal;
+    --font-weight-tablet3: 500;
+    --line-height-tablet3: 26px; /* 92.857% */
+    --letter-spacing-tablet3: -1.68px;
+
+    /* text-preset-3 */
+    /* Mobile/text-preset-3 */
+    --font-family-3: "DM Sans";
+    --font-size-3: 26px;
+    --font-style-3: normal;
+    --font-weight-3: 500;
+    --line-height-3: 24px; /* 92.308% */
+    --letter-spacing-3: -1.56px;
+
+    /* text-preset-desktop4 */
+    --font-family-desktop4: "DM Sans";
+    --font-size-desktop4: 20px;
+    --font-style-desktop4: normal;
+    --font-weight-desktop4: 500;
+    --line-height-desktop4: 90%; /* 18px */
+    --letter-spacing-desktop4: -1.2px;
+
+    /* text-preset-4 */
+    --font-family-4: "General Sans";
+    --font-size-4: 19.329px;
+    --font-style-4: normal;
+    --font-weight-4: 600;
+    --line-height-4: normal;
+
+    /* text-preset-5 */
+    /* text-preset-4 */
+    --font-family-5: "DM Sans";
+    --font-size-5: 18px;
+    --font-style-5: normal;
+    --font-weight-5: 400;
+    --line-height-5: 20px; /* 111.111% */
+
+    /* text-preset-6 */
+    --font-family-6: "DM Sans";
+    --font-size-6: 16px;
+    --font-style-6: normal;
+    --font-weight-6: 500;
+    --line-height-6: 90%; /* 14.4px */
+    --letter-spacing-6: -0.96px;
+
+    /* text-preset-7 */
+    --font-family-7: "DM Sans";
+    --font-size-7: 12px;
+    --font-style-7: normal;
+    --font-weight-7: 400;
+    --line-height-7: normal;
+    --letter-spacing-7: -0.36px;
+
+}

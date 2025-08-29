@@ -1,4 +1,4 @@
-import {CfnOutput, RemovalPolicy, Stack, StackProps} from 'aws-cdk-lib';
+import {CfnOutput, Duration, RemovalPolicy, Stack, StackProps} from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 import * as lambda from 'aws-cdk-lib/aws-lambda';
 import * as path from 'path';
@@ -11,6 +11,8 @@ import * as iam from 'aws-cdk-lib/aws-iam';
 import * as dotenv from 'dotenv';
 import * as fs from 'fs';
 import {TableConfig} from "../types";
+import * as events from "aws-cdk-lib/aws-events";
+import * as targets from "aws-cdk-lib/aws-events-targets";
 
 const buildFullName = (name: string): string => {
   return [process.env.CLIENT, process.env.CONTEXT, name, process.env.VARIANT]
@@ -96,6 +98,22 @@ const buildLayers = (configs:any[], scope:any) => {
   console.log('✅ Layer definitions created:');
 }
 
+function parseSchedule(expr: string): events.Schedule {
+    const rateMatch = expr.match(/^rate\((\d+)([mh])\)$/i);
+    if (rateMatch) {
+        const value = parseInt(rateMatch[1], 10);
+        const unit = rateMatch[2].toLowerCase();
+        if (unit === "m") return events.Schedule.rate(Duration.minutes(value));
+        if (unit === "h") return events.Schedule.rate(Duration.hours(value));
+    }
+
+    if (expr.startsWith("cron(")) {
+        return events.Schedule.expression(expr); // already full AWS cron
+    }
+
+    throw new Error(`Unsupported schedule expression: ${expr}`);
+}
+
 const buildLambdas = (configs: any[], scope: any) => {
   if (!configs || configs.length === 0) {
     console.warn('No lambda configurations provided. Skipping lambda creation.');
@@ -113,14 +131,26 @@ const buildLambdas = (configs: any[], scope: any) => {
       envVars = dotenv.parse(envContent); // parsed as key-value object
     }
 
+    const functionName = buildFullName(item.fullName ?? item.name);
+
     acc[item.name] = new lambda.Function(scope, item.name, {
       runtime: lambda.Runtime.NODEJS_22_X,
-      functionName: buildFullName(item.fullName ?? item.name),
+      functionName,
       handler: 'index.handler',
       code: lambda.Code.fromAsset(lambdaPath),
       layers: getLayersForLambda(item.layers || []),
       environment: envVars,
     });
+
+    if (item.schedule) {
+        // EventBridge rule (cron or rate)
+        const rule = new events.Rule(scope, `${functionName}-schedule`, {
+            schedule: parseSchedule(item.schedule), // 0 12 * * ? * = every day at 12:00 UTC
+        });
+
+        // Add Lambda target
+        rule.addTarget(new targets.LambdaFunction(acc[item.name]));
+    }
 
     return acc;
   }, {} as Record<string, lambda.Function>);

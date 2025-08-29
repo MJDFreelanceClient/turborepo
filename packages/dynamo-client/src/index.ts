@@ -3,6 +3,7 @@ import { PutCommand } from "@aws-sdk/lib-dynamodb";
 import { DynamoDBDocumentClient } from "@aws-sdk/lib-dynamodb";
 import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
 import { ZodSchema } from "zod";
+import {fromWebToken} from "@aws-sdk/credential-providers";
 
 export const parse = (record:any) => {
     const { eventName, dynamodb } = record;
@@ -33,4 +34,25 @@ export async function save<T extends Record<string, any>>(
     }));
 
     return parsed;
+}
+
+export const getClient = async () => {
+
+    const region = process.env.AWS_REGION!;
+    const roleArn = process.env.AWS_ROLE_ARN!;
+    const token = process.env.VERCEL_OIDC_TOKEN!;
+
+    const baseClient = new DynamoDBClient({
+        region,
+        credentials: fromWebToken({
+            roleArn,
+            webIdentityToken: token,
+            roleSessionName: 'vercel-session',
+        }),
+    });
+
+    console.log(baseClient)
+
+// Create the lib-dynamodb wrapper
+    return DynamoDBDocumentClient.from(baseClient);
 }

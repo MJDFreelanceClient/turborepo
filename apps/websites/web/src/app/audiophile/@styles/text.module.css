@@ -1,0 +1,100 @@
+@font-face {
+    font-family: 'Manrope';
+    src: url('https://mjdfreelanceclient.github.io/my-font-server/fonts/Manrope/Manrope-VariableFont_wght.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+.setup {
+    font-family: Manrope, sans-serif;
+
+    /* text-preset-1 */
+    --font-size-1: 56px;
+    --font-style-1: normal;
+    --font-weight-1: 700;
+    --line-height-1: 58px; /* 103.571% */
+    --letter-spacing-1: 2px;
+
+    /* text-mobile-1 */
+    --font-size-mobile1: 36px;
+    --font-style-mobile1: normal;
+    --font-weight-mobile1: 700;
+    --line-height-mobile1: 40px; /* 111.111% */
+    --letter-spacing-mobile1: 1.286px;
+
+    /* text-preset-2 */
+    --font-size-2: 14px;
+    --font-style-2: normal;
+    --font-weight-2: 400;
+    --line-height-2: normal;
+    --letter-spacing-2: 10px;
+
+    /* text-preset-3 */
+    --font-size-3: 15px;
+    --font-style-3: normal;
+    --font-weight-3: 400;
+    --line-height-3: 25px; /* 166.667% */
+
+    /* text-preset-4 */
+    --font-size-4: 13px;
+    --font-style-4: normal;
+    --font-weight-4: 700;
+    --line-height-4: normal;
+    --letter-spacing-4: 1px;
+
+    /* text-preset-5 */
+    --font-size-5: 13px;
+    --font-style-5: normal;
+    --font-weight-5: 700;
+    --line-height-5: 25px; /* 192.308% */
+    --letter-spacing-5: 2px;
+
+    /* text-preset-6 */
+    --font-size-6: 18px;
+    --font-style-6: normal;
+    --font-weight-6: 700;
+    --line-height-6: normal;
+    --letter-spacing-6: 1.286px;
+
+    /* text-preset-7 */
+    --font-size-7: 40px;
+    --font-style-7: normal;
+    --font-weight-7: 700;
+    --line-height-7: 44px; /* 110% */
+    --letter-spacing-7: 1.429px;
+
+    /* text-preset-8 */
+    --font-size-8: 32px;
+    --font-style-8: normal;
+    --font-weight-8: 700;
+    --line-height-8: 36px; /* 112.5% */
+    --letter-spacing-8: 1.143px;
+
+    /* text-mobile-5 */
+    --font-size-mobile5: 24px;
+    --font-style-mobile5: normal;
+    --font-weight-mobile5: 700;
+    --line-height-mobile5: 36px; /* 112.5% */
+    --letter-spacing-mobile5: 0.857px;
+
+    /* text-mobile-2 */
+    --font-size-mobile2: 15px;
+    --font-style-mobile2: normal;
+    --font-weight-mobile2: 700;
+    --line-height-mobile2: normal;
+    --letter-spacing-mobile2: 1.071px;
+
+    /* text-mobile-3 */
+    --font-size-mobile3: 15px;
+    --font-style-mobile3: normal;
+    --font-weight-mobile3: 500;
+    --line-height-mobile3: 25px;
+
+    /* text-mobile-4 */
+    --font-size-mobile4: 28px;
+    --font-style-mobile4: normal;
+    --font-weight-mobile4: 700;
+    --line-height-mobile4: normal;
+    --letter-spacing-mobile4: 2px;
+}

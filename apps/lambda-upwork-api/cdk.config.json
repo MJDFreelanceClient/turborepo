@@ -1,0 +1,10 @@
+{
+  "name": "lambda-upwork-api",
+  "tables": [
+    {
+      "name": "jobs",
+      "permissions": ["read", "write"]
+    }
+  ],
+  "schedule": "rate(5m)"
+}

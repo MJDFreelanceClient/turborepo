@@ -1,0 +1,125 @@
+.setup {
+    @font-face {
+        font-family: 'Nunito';
+        src: url('https://mjdfreelanceclient.github.io/my-font-server/fonts/Nunito/Nunito-VariableFont_wght.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+    }
+
+    font-family: Nunito, sans-serif;
+
+    /* text-preset-desktop1 */
+    /* text-preset-1 */
+    --font-family-desktop1: Nunito;
+    --font-size-desktop1: 72px;
+    --font-style-desktop1: normal;
+    --font-weight-desktop1: 800;
+    --line-height-desktop1: 110%; /* 79.2px */
+    --letter-spacing-desktop1: -2px;
+
+    /* text-preset-mobile1 */
+    /* text-preset-1(mobile) */
+    --font-family-mobile1: Nunito;
+    --font-size-mobile1: 52px;
+    --font-style-mobile1: normal;
+    --font-weight-mobile1: 800;
+    --line-height-mobile1: 110%; /* 57.2px */
+    --letter-spacing-mobile1: -2px;
+
+    /* text-preset-tablet1 */
+    /* text-preset-1 (tablet) */
+    --font-family-tablet1: Nunito;
+    --font-size-tablet1: 64px;
+    --font-style-tablet1: normal;
+    --font-weight-tablet1: 800;
+    --line-height-tablet1: 110%; /* 70.4px */
+    --letter-spacing-tablet1: -2px;
+
+    /* text-preset-2 */
+    --font-family-: Nunito;
+    --font-size-2: 48px;
+    --font-style-2: normal;
+    --font-weight-2: 800;
+    --line-height-2: 120%; /* 57.6px */
+    --letter-spacing-2: -2px;
+
+    /* text-preset-3 */
+    /* text-preset-3 */
+    --font-family-3: Nunito;
+    --font-size-3: 32px;
+    --font-style-3: normal;
+    --font-weight-3: 700;
+    --line-height-3: 130%; /* 41.6px */
+    --letter-spacing-3: -1px;
+
+    /* text-preset-4 */
+    /* text-preset-4 */
+    --font-family-4: Nunito;
+    --font-size-4: 24px;
+    --font-style-4: normal;
+    --font-weight-4: 700;
+    --line-height-4: 130%; /* 31.2px */
+    --letter-spacing-4: -1px;
+
+    /* text-preset-5 */
+    /* text-preset-5 */
+    --font-family-5: Nunito;
+    --font-size-5: 20px;
+    --font-style-5: normal;
+    --font-weight-5: 700;
+    --line-height-5: 140%; /* 28px */
+    --letter-spacing-5: -0.5px;
+
+    /* text-preset-6 */
+    /* text-preset-6 */
+    --font-family-6: "Nunito Sans";
+    --font-size-6: 20px;
+    --font-style-6: normal;
+    --font-weight-6: 500;
+    --line-height-6: 150%; /* 30px */
+    --letter-spacing-6: -0.4px;
+
+    /* text-preset-7 */
+    /* text-preset-7 */
+    --font-family-7: Nunito;
+    --font-size-7: 18px;
+    --font-style-7: normal;
+    --font-weight-7: 600;
+    --line-height-7: 150%; /* 27px */
+    --letter-spacing-7: -0.3px;
+
+    /* text-preset-8 */
+    /* text-preset-8 */
+    --font-family-8: "Nunito Sans";
+    --font-size-8: 16px;
+    --font-style-8: normal;
+    --font-weight-8: 700;
+    --line-height-8: 150%; /* 24px */
+    --letter-spacing-8: -0.3px;
+
+    /* text-preset-9 */
+    /* text-preset-9 */
+    --font-family-9: "Nunito Sans";
+    --font-size-9: 16px;
+    --font-style-9: normal;
+    --font-weight-9: 500;
+    --line-height-9: 150%; /* 24px */
+    --letter-spacing-9: -0.3px;
+
+    /* text-preset-10 */
+    --font-family-10: Inter;
+    --font-size-10: 24px;
+    --font-style-10: normal;
+    --font-weight-10: 600;
+    --line-height-10: normal;
+
+    /* text-preset-11 */
+    --text-align-11: center;
+    --font-family-11: Nunito;
+    --font-size-11: 18px;
+    --font-style-11: normal;
+    --font-weight-11: 700;
+    --line-height-11: 140%; /* 25.2px */
+
+}

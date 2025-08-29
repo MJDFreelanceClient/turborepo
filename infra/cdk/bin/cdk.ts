@@ -22,7 +22,7 @@ targetJsonFileName = "cdk.config.json";
 results = collectJsonObjects(startFolder, targetJsonFileName);
 lambdaConfigStore.setState(()=>normalizeByName(results))
 
-const globalConfigPath = path.resolve(__dirname, '../global.cdk.config.json');
+const globalConfigPath = path.resolve(__dirname, '../global.infra.config.json');
 try {
     const data = fs.readFileSync(globalConfigPath, 'utf8');
     const parsed = JSON.parse(data);

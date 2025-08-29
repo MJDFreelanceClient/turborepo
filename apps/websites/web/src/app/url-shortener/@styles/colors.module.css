@@ -1,0 +1,38 @@
+.setup {
+    --color-black-translucent: hsla(0, 0%, 0%, 0); /* Transparent black */
+    --color-black: hsla(0, 0%, 0%, 1); /* Pure black */
+
+
+    --color-blue-900: hsla(245, 25%, 18%, 1); /* Dark navy blue */
+    --color-blue-800: hsla(245, 17%, 29%, 1); /* Muted navy blue */
+    --color-blue-700: hsla(215, 62%, 25%, 1); /* Deep dark blue */
+    --color-blue-500: hsla(204, 76%, 43%, 1); /* Vibrant blue */
+    --color-blue-100: hsla(180, 56%, 75%, 1); /* Pale teal/blue */
+
+
+    --color-gray-50: hsla(225, 32%, 95%, 1); /* Very light gray */
+    --color-gray-200: hsla(0, 0%, 75%, 1); /* Light gray */
+
+    --color-green-500: hsla(163, 61%, 48%, 1); /* Bright green */
+    --color-primary: hsla(180, 66%, 49%, 1); /* Vibrant green/teal */
+
+
+    --color-pink-200: hsla(332, 51%, 85%, 1); /* Light pink */
+
+
+    --color-purple-translucent: hsla(257, 11%, 21%, 0); /* Transparent purple */
+    --color-purple-900: hsla(257, 11%, 21%, 1); /* Transparent purple */
+    --color-purple-800: hsla(257, 8%, 14%, 1); /* Very dark purple */
+    --color-purple-700: hsla(257, 21%, 35%, 1); /* Muted dark purple */
+    --color-purple-600: hsla(257, 27%, 26%, 1); /* Muted dark purple */
+    --color-purple-200: hsla(257, 8%, 63%, 1); /* Soft light purple */
+
+
+    --color-red-200: hsla(6, 48%, 88%, 1); /* Light red/pink */
+
+
+    --color-white: hsla(0, 0%, 100%, 1); /* Pure white */
+
+
+    --color-yellow-200: hsla(48, 61%, 87%, 1); /* Soft warm yellow */
+}

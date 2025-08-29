@@ -1,0 +1,62 @@
+@font-face {
+    font-family: 'Space Mono';
+    src: url('https://mjdfreelanceclient.github.io/my-font-server/fonts/SpaceMono/SpaceMono-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+.setup {
+    font-family: "Space Mono", sans-serif;
+
+    /* text-mobile-1 */
+    --font-family-mobile1: "Space Mono";
+    --font-size-mobile1: 32px;
+    --font-style-mobile1: normal;
+    --font-weight-mobile1: 700;
+    --line-height-mobile1: normal;
+    --letter-spacing-mobile1: -0.667px;
+
+    /* text-preset-4 */
+    /* Text Preset 4 - Space Mono Bold - 20px - 30px Line Height - 0px Line Spacing */
+    --font-family-4: "Space Mono";
+    --font-size-4: 20px;
+    --font-style-4: normal;
+    --font-weight-4: 700;
+    --line-height-4: 30px; /* 150% */
+
+    /* text-preset-1 */
+    /* Text Preset 1 - Space Mono Bold - 48px - 71px Line Height - -1px Line Spacing */
+    --font-family-1: "Space Mono";
+    --font-size-1: 48px;
+    --font-style-1: normal;
+    --font-weight-1: 700;
+    --line-height-1: 71px; /* 147.917% */
+    --letter-spacing-1: -1px;
+
+    /* text-preset-6 */
+    /* Text Preset 6 - Space Mono Bold - 13px - 19px Line Height - 0px Line Spacing */
+    --font-family-6: "Space Mono";
+    --font-size-6: 13px;
+    --font-style-6: normal;
+    --font-weight-6: 700;
+    --line-height-6: 19px; /* 146.154% */
+
+    /* text-preset-3 */
+    /* Text Preset 3 - Space Mono Bold - 24px - 36px Line Height - 0px Line Spacing */
+    --font-family-3: "Space Mono";
+    --font-size-3: 24px;
+    --font-style-3: normal;
+    --font-weight-3: 700;
+    --line-height-3: 36px; /* 150% */
+
+    /* text-preset-5 */
+    /* Text Preset 5 - Space Mono Bold - 16px - 24px Line Height - 0px Line Spacing */
+    --font-family-5: "Space Mono";
+    --font-size-5: 16px;
+    --font-style-5: normal;
+    --font-weight-5: 700;
+    --line-height-5: 24px; /* 150% */
+
+
+}

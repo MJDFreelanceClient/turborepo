@@ -1,0 +1,96 @@
+"use client"
+
+import {useState} from "react";
+
+const Page = () => {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
+    const [success, setSuccess] = useState(false);
+
+    const handleSubmit = async (e:any) => {
+        e.preventDefault();
+        setError('');
+        setSuccess(false);
+
+        const res = await fetch('/auth/api/signup', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, password }),
+        });
+
+        if (res.ok) {
+            setSuccess(true);
+            setEmail('');
+            setPassword('');
+        } else {
+            const data = await res.json();
+            setError(data.error || 'Something went wrong');
+        }
+    };
+
+    return (
+        <main className="flex items-center justify-center min-h-screen bg-gray-50 px-4">
+            <div className="w-full max-w-md bg-white rounded-2xl shadow-lg p-8">
+                <h1 className="text-2xl font-bold text-gray-900 mb-6 text-center">
+                    Create your account
+                </h1>
+                <form onSubmit={handleSubmit} className="space-y-5">
+                    <div>
+                        <label
+                            htmlFor="email"
+                            className="block text-sm font-medium text-gray-700"
+                        >
+                            Email address
+                        </label>
+                        <input
+                            id="email"
+                            type="email"
+                            placeholder="you@example.com"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            required
+                            className="p-2 mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                        />
+                    </div>
+
+                    <div>
+                        <label
+                            htmlFor="password"
+                            className="block text-sm font-medium text-gray-700"
+                        >
+                            Password
+                        </label>
+                        <input
+                            id="password"
+                            type="password"
+                            placeholder="••••••••"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
+                            className="p-2 mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                        />
+                    </div>
+
+                    <button
+                        type="submit"
+                        className="w-full flex justify-center py-2 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    >
+                        Sign Up
+                    </button>
+                </form>
+
+                {success && (
+                    <p className="mt-4 text-green-600 text-center">
+                        ✅ Account created! You can now log in.
+                    </p>
+                )}
+                {error && (
+                    <p className="mt-4 text-red-600 text-center">{error}</p>
+                )}
+            </div>
+        </main>
+    );
+};
+
+export default Page;

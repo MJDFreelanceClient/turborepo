@@ -1,0 +1,50 @@
+.setup {
+
+    --color-neutral-500: hsla(43, 100%, 70%, 1);
+
+    --color-neutral-500: hsla(36, 100%, 50%, 1);
+
+    --color-neutral-500: hsla(0, 78%, 65%, 1);
+
+    --color-neutral-500: hsla(8, 69%, 62%, 1);
+
+    --color-neutral-500: hsla(0, 0%, 47%, 1);
+
+    --color-neutral-500: hsla(93, 47%, 48%, 1);
+
+    --color-neutral-500: hsla(0, 0%, 16%, 1);
+
+    --color-neutral-500: hsla(200, 67%, 48%, 1);
+
+    --color-neutral-500: hsla(200, 67%, 45%, 1);
+
+    --color-neutral-500: hsla(0, 0%, 24%, 1);
+
+    --color-neutral-500: hsla(0, 0%, 8%, 1);
+
+    --color-neutral-500: hsla(19, 93%, 67%, 1);
+
+    --color-neutral-500: hsla(0, 76%, 70%, 1);
+
+    --color-neutral-500: hsla(231, 43%, 94%, 1);
+
+    --color-neutral-500: hsla(266, 50%, 66%, 1);
+
+    --color-neutral-500: hsla(189, 57%, 63%, 1);
+
+    --color-neutral-500: hsla(231, 58%, 55%, 0.2);
+
+    --color-grey-600: hsla(228, 12%, 41%, 1);
+
+    --color-black: hsla(0, 0%, 0%, 1);
+
+    --color-red-400: hsla(0, 94%, 66%, 1);
+
+    --color-blue-600: hsla(231, 69%, 60%, 1);
+
+    --color-blue-950: hsla(229, 31%, 21%, 1);
+
+    --color-white: hsla(0, 0%, 100%, 1);
+
+    
+}

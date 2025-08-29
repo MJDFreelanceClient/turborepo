@@ -1,0 +1,54 @@
+@font-face {
+    font-family: 'Fraunces';
+    src: url('https://mjdfreelanceclient.github.io/my-font-server/fonts/Fraunces/Fraunces-VariableFont_SOFT,WONK,opsz,wght.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('https://mjdfreelanceclient.github.io/my-font-server/fonts/Montserrat/Montserrat-VariableFont_wght.ttf') format('truetype');
+    font-weight: 300 700; /* Define the weight range supported by the variable font */
+    font-style: normal;
+}
+
+.header {
+    font-family: Fraunces, serif;
+}
+
+.setup {
+    font-family: Montserrat, sans-serif;
+
+    /* text-preset-1 */
+    --font-size-1: 12px;
+    --font-style-1: normal;
+    --font-weight-1: 500;
+    --line-height-1: normal;
+    --letter-spacing-1: 5px;
+
+    /* text-preset-2 */
+    --font-size-2: 32px;
+    --font-style-2: normal;
+    --font-weight-2: 700;
+    --line-height-2: 32px; /* 100% */
+
+    /* text-preset-3 */
+    --font-size-3: 14px;
+    --font-style-3: normal;
+    --font-weight-3: 500;
+    --line-height-3: 23px; /* 164.286% */
+
+    /* text-preset-4 */
+    --font-size-4: 13px;
+    --font-style-4: normal;
+    --font-weight-4: 500;
+    --line-height-4: 23px; /* 176.923% */
+    --text-decoration-line-4: line-through;
+
+    /* text-preset-5 */
+    --font-size-5: 14px;
+    --font-style-5: normal;
+    --font-weight-5: 700;
+    --line-height-5: normal;
+}

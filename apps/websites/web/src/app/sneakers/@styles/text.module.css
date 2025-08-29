@@ -1,0 +1,101 @@
+@font-face {
+    font-family: 'Kumbh Sans';
+    src: url('https://mjdfreelanceclient.github.io/my-font-server/fonts/KumbhSans/KumbhSans-VariableFont_YOPQ,wght.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+.setup {
+    font-family: "Kumbh Sans", sans-serif;
+
+    /* text-preset-1 */
+    /* Text Preset 1 - Kumbh Sans Bold - 44px - 48px Line Height - 0px Line Spacing */
+    --font-family-1: "Kumbh Sans";
+    --font-size-1: 44px;
+    --font-style-1: normal;
+    --font-weight-1: 700;
+    --line-height-1: 48px; /* 109.091% */
+
+    /* text-tablet-1 */
+    --font-family-tablet1: "Kumbh Sans";
+    --font-size-tablet1: 44px;
+    --font-style-tablet1: normal;
+    --font-weight-tablet1: 700;
+    --line-height-tablet1: 48px; /* 109.091% */
+
+    /* text-preset-2 */
+    /* Text Preset 2 - Kumbh Sans Bold - 28px - 32px Line Height - 0px Line Spacing */
+    --font-family-2: "Kumbh Sans";
+    --font-size-2: 28px;
+    --font-style-2: normal;
+    --font-weight-2: 700;
+    --line-height-2: 32px; /* 114.286% */
+
+    /* text-tablet-2 */
+    --font-family-tablet2: "Kumbh Sans";
+    --font-size-tablet2: 16px;
+    --font-style-tablet2: normal;
+    --font-weight-tablet2: 400;
+    --line-height-tablet2: 26px; /* 162.5% */
+
+    /* text-preset-3 */
+    --font-family-3: "Kumbh Sans";
+    --font-size-3: 16px;
+    --font-style-3: normal;
+    --font-weight-3: 700;
+    --line-height-3: 26px; /* 162.5% */
+    --text-decoration-line-3: line-through;
+
+    /* text-preset-4 */
+    --font-family-4: "Kumbh Sans";
+    --font-size-4: 16px;
+    --font-style-4: normal;
+    --font-weight-4: 700;
+    --line-height-4: 26px; /* 162.5% */
+
+    /* text-preset-5 */
+    /* Text Preset 3 - Kumbh Sans Regular - 16px - 26px Line Height - 0px Line Spacing */
+    --font-family-5: "Kumbh Sans";
+    --font-size-5: 16px;
+    --font-style-5: normal;
+    --font-weight-5: 400;
+    --line-height-5: 26px; /* 162.5% */
+
+    /* text-preset-6 */
+    --font-family-6: "Kumbh Sans";
+    --font-size-6: 15px;
+    --font-style-6: normal;
+    --font-weight-6: 400;
+    --line-height-6: 26px; /* 173.333% */
+
+    /* tablet */
+    --font-family-tablet3: "Kumbh Sans";
+    --font-size-tablet3: 13px;
+    --font-style-tablet3: normal;
+    --font-weight-tablet3: 700;
+    --line-height-tablet3: normal;
+    --letter-spacing-tablet3: 2px;
+    --text-transform-tablet3: uppercase;
+
+    /* text-preset-7 */
+    --font-family-7: "Kumbh Sans";
+    --font-size-7: 13px;
+    --font-style-7: normal;
+    --font-weight-7: 700;
+    --line-height-7: 16px; /* 123.077% */
+    --letter-spacing-7: 2px;
+    --text-transform-7: uppercase;
+
+    /* text-mobile-1 */
+    --font-family-mobile1: "Kumbh Sans";
+    --font-size-mobile1: 12px;
+    --font-style-mobile1: normal;
+    --font-weight-mobile1: 700;
+    --line-height-mobile1: normal;
+    --letter-spacing-mobile1: 1.846px;
+    --text-transform-mobile1: uppercase;
+
+
+
+}

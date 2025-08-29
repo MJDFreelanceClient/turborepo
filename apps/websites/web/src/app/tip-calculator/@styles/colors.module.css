@@ -1,0 +1,24 @@
+.setup {
+    --color-orange-400: hsla(13, 70%, 60%, 1);
+
+    --color-gray-550: hsla(180, 18%, 40%, 1);
+    
+    --color-gray-600: hsla(180, 25%, 32%, 1);
+    
+    --color-gray-400: hsla(184, 14%, 56%, 1);
+    
+    --color-gray-50: hsla(189, 41%, 97%, 1);
+    
+    --color-gray-300: hsla(184, 19%, 68%, 1);
+    
+    --color-gray-500: hsla(186, 14%, 43%, 1);
+    
+    --color-green-400: hsla(172, 67%, 45%, 1);
+    
+    --color-white: hsla(0, 0%, 100%, 1);
+
+    --color-green-900: hsla(183, 100%, 15%, 1);
+    
+    --color-gray-200: hsla(185, 41%, 84%, 1);
+    
+}

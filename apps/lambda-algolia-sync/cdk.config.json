@@ -10,6 +10,11 @@
       "name": "food",
       "permissions": ["read", "write"],
       "isStreamHandler": true
+    },
+    {
+      "name": "movies",
+      "permissions": ["read", "write"],
+      "isStreamHandler": true
     }
   ],
   "layers": ["algolia-client", "dynamo-client"]

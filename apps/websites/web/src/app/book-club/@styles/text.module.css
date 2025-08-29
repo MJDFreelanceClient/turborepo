@@ -1,0 +1,86 @@
+@font-face {
+    font-family: 'MartianMono';
+    src: url('https://mjdfreelanceclient.github.io/my-font-server/fonts/MartianMono/MartianMono-VariableFont_wdth,wght.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('https://mjdfreelanceclient.github.io/my-font-server/fonts/Inter/Inter-VariableFont_opsz,wght.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+.header {
+    font-family: MartianMono, serif;
+}
+
+.setup {
+    font-family: Inter, sans-serif;
+
+    /* text-mobile-1 */
+    --font-size-mobile1: 38px;
+    --font-style--mobile1: normal;
+    --font-weight--mobile1: 700;
+    --line-height--mobile1: 120%; /* 45.6px */
+    --letter-spacing-mobile1: -2px;
+
+    /* text-preset-1 */
+    --font-size-1: 62px;
+    --font-style-1: normal;
+    --font-weight-1: 700;
+    --line-height-1: 120%; /* 74.4px */
+    --letter-spacing-1: -2px;
+
+    /* text-preset-2 */
+    --font-size-2: 20px;
+    --font-style-2: normal;
+    --font-weight-2: 400;
+    --line-height-2: 140%; /* 28px */
+    --letter-spacing-2: -0.5px;
+
+    /* text-preset-3 */
+    --font-size-3: 18px;
+    --font-style-3: normal;
+    --font-weight-3: 600;
+    --line-height-3: 130%; /* 23.4px */
+    --letter-spacing-3: -1px;
+
+    /* text-preset-4 */
+    --font-size-4: 14px;
+    --font-style-4: normal;
+    --font-weight-4: 400;
+    --line-height-4: 120%; /* 16.8px */
+    --letter-spacing-4: -1px;
+
+    /* text-preset-5 */
+    --font-size-5: 50px;
+    --font-style-5: normal;
+    --font-weight-5: 600;
+    --line-height-5: 130%; /* 65px */
+    --letter-spacing-5: -2px;
+
+    /* text-preset-6 */
+    --font-size-6: 24px;
+    --font-style-6: normal;
+    --font-weight-6: 400;
+    --line-height-6: 24px; /* 100% */
+    --letter-spacing-6: -0.24px;
+
+    /* text-preset-7 */
+    --font-size-7: 34px;
+    --font-style-7: normal;
+    --font-weight-7: 600;
+    --line-height-7: 130%; /* 44.2px */
+    --letter-spacing-7: -1px;
+
+    /* text-mobile-7 */
+    --font-size-mobile7: 24px;
+    --font-style-mobile7: normal;
+    --font-weight-mobile7: 600;
+    --line-height-mobile7: 110%; /* 26.4px */
+    --letter-spacing-mobile7: -1px;
+}

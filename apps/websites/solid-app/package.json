@@ -1,0 +1,25 @@
+{
+  "name": "solid-app",
+  "type": "module",
+  "scripts": {
+    "dev": "vite dev",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.840.0",
+    "@aws-sdk/credential-providers": "^3.840.0",
+    "@aws-sdk/lib-dynamodb": "^3.840.0",
+    "@solidjs/meta": "^0.29.4",
+    "@solidjs/router": "^0.15.3",
+    "solid-js": "^1.9.7",
+    "solid-start": "0.3.11",
+    "solid-start-vercel": "0.3.11"
+  },
+  "devDependencies": {
+    "vite": "^5.2.10"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

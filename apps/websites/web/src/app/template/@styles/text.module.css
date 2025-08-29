@@ -1,0 +1,57 @@
+.setup {
+
+    /* text-preset-2 */
+    /* Text Preset 2 - Bai Jamjuree SemiBold - 40px - 125% Line Height - -0.75px Line Spacing */
+    --font-family-2: "Bai Jamjuree";
+    --font-size-2: 40px;
+    --font-style-2: normal;
+    --font-weight-2: 600;
+    --line-height-2: 125%; /* 50px */
+    --letter-spacing-2: -0.75px;
+
+    /* text-preset-8 */
+    /* Text Preset 8 - Bai Jamjuree Regular - 16px - 150% Line Height - 0.15px Line Spacing */
+    --font-family-8: "Bai Jamjuree";
+    --font-size-8: 16px;
+    --font-style-8: normal;
+    --font-weight-8: 400;
+    --line-height-8: 150%; /* 24px */
+    --letter-spacing-8: 0.15px;
+
+    /* text-preset-6 */
+    /* Text Preset 6 - Bai Jamjuree SemiBold - 24px - 125% Line Height - -0.6px Line Spacing */
+    --font-family-6: "Bai Jamjuree";
+    --font-size-6: 24px;
+    --font-style-6: normal;
+    --font-weight-6: 600;
+    --line-height-6: 125%; /* 30px */
+    --letter-spacing-6: -0.4px;
+
+    /* text-preset-3 */
+    /* Text Preset 3 - Bai Jamjuree SemiBold - 36px - 125% Line Height - -0.6px Line Spacing */
+    --font-family-3: "Bai Jamjuree";
+    --font-size-3: 36px;
+    --font-style-3: normal;
+    --font-weight-3: 600;
+    --line-height-3: 125%; /* 45px */
+    --letter-spacing-3: -0.6px;
+
+    /* text-preset-7 */
+    /* Text Preset 7 (Regular) - Bai Jamjuree Regular - 20px - 150% Line Height - 0.15px Line Spacing */
+    --font-family-7: "Bai Jamjuree";
+    --font-size-7: 20px;
+    --font-style-7: normal;
+    --font-weight-7: 400;
+    --line-height-7: 150%; /* 30px */
+    --letter-spacing-7: 0.15px;
+
+    /* text-preset-1 */
+    /* Text Preset 1 - Bai Jamjuree SemiBold - 46px - 125% Line Height - -0.75px Line Spacing */
+    --font-family-1: "Bai Jamjuree";
+    --font-size-1: 46px;
+    --font-style-1: normal;
+    --font-weight-1: 600;
+    --line-height-1: 125%; /* 57.5px */
+    --letter-spacing-1: -0.75px;
+
+}

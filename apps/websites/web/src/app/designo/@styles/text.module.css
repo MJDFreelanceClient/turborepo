@@ -1,0 +1,49 @@
+@font-face {
+    font-family: 'Jost';
+    src: url('https://mjdfreelanceclient.github.io/my-font-server/fonts/Jost/Jost-VariableFont_wght.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+.setup {
+    font-family: Jost, sans-serif;
+
+    /* text-preset-1 */
+    --font-size-1: 16px;
+    --font-style-1: normal;
+    --font-weight-1: 400;
+    --line-height-1: 26px; /* 162.5% */
+
+    /* text-mobile-1 */
+    --font-size-mobile1: 15px;
+    --font-style-mobile1: normal;
+    --font-weight-mobile1: 400;
+    --line-height-mobile1: 25px; /* 166.667% */
+
+    /* text-preset-2 */
+    --font-size-2: 40px;
+    --font-style-2: normal;
+    --font-weight-2: 500;
+    --line-height-2: 40px; /* 100% */
+
+    /* text-mobile-2 */
+    --font-size-mobile2: 32px;
+    --font-style-mobile2: normal;
+    --font-weight-mobile2: 500;
+    --line-height-mobile2: 36px; /* 112.5% */
+
+    /* text-preset-3 */
+    --font-size-3: 15px;
+    --font-style-3: normal;
+    --font-weight-3: 500;
+    --line-height-3: normal;
+    --letter-spacing-3: 1px;
+
+    /* text-mobile-3 */
+    --font-size-mobile3: 15px;
+    --font-style-mobile3: normal;
+    --font-weight-mobile3: 500;
+    --line-height-mobile3: normal;
+    --letter-spacing-mobile3: 1px;
+}

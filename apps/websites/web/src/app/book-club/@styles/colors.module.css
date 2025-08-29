@@ -1,0 +1,35 @@
+.setup {
+    --color-neutral-900: hsla(194, 78%, 11%, 1);
+    --color-neutral-700: hsla(195, 23%, 28%, 1);
+    --color-neutral-950: hsla(222, 32%, 8%, 1);
+    --color-neutral-200: hsla(17, 12%, 89%, 1);
+    --color-neutral-50: hsla(17, 41%, 97%, 1);
+
+    --color-pink-300: hsla(22, 99%, 72%, 1);
+    --color-pink-200: hsla(22, 100%, 69%, 1);
+    --color-pink-50: hsla(23, 100%, 97%, 1);
+
+}
+
+.grid {
+    background: hsla(17, 41%, 97%, 1) url('/book-club/images/pattern-light-bg.svg');
+}
+
+.club {
+    position: relative;
+    z-index: 1;
+}
+
+.club::before {
+    content: "";
+    translate: -5px 0;
+    position: absolute;
+    top: -10%;
+    left: -10%;
+    width: 120%;
+    height: 110%;
+    background: url('/book-club/images/pattern-circle.png') no-repeat center;
+    background-size: cover;
+    z-index: -1;
+    pointer-events: none;
+}
