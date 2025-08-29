@@ -11,6 +11,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { cookies } from "next/headers";
 import CreatePDF from "@/components/CreatePDF";
+import {Toaster} from "sonner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -40,10 +41,8 @@ export default async function RootLayout({
             <ClerkProvider>
                 <html lang="en">
                 <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-                <header className="flex justify-end items-center p-4 gap-4 h-16">
-                    <CreatePDF />
-                </header>
                 {children}
+                <Toaster richColors /> {/* 👈 Mount once at the root */}
                 </body>
                 </html>
             </ClerkProvider>
@@ -73,6 +72,7 @@ export default async function RootLayout({
           </SignedOut>
           <SignedIn>
               {children}
+              <Toaster richColors /> {/* 👈 Mount once at the root */}
           </SignedIn>
           </body>
           </html>
