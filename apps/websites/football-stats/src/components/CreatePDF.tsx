@@ -2,6 +2,7 @@
 
 import { useSearchParams } from "next/navigation";
 import { toast } from "sonner";
+import {modalStore} from "@/lib/modalStore";
 
 export default function CreatePDF() {
     const searchParams = useSearchParams();
@@ -19,24 +20,7 @@ export default function CreatePDF() {
             // Create a File for sharing
             const file = new File([blob], "report.pdf", { type: "application/pdf" });
 
-            // --- Download ---
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement("a");
-            a.href = url;
-            a.download = "report.pdf";
-            a.click();
-            URL.revokeObjectURL(url);
-
-            // --- Share (if supported) ---
-            if (navigator.share && navigator.canShare?.({ files: [file] })) {
-                await navigator.share({
-                    title: "Match Report",
-                    text: "Check out this PDF!",
-                    files: [file],
-                });
-            } else {
-                alert("Shared via download only (Web Share not supported).");
-            }
+            modalStore.setState(file);
 
             toast.success("PDF ready!", { id: toastId });
         } catch (err) {
