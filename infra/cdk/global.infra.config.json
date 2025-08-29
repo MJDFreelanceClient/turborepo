@@ -1,0 +1,48 @@
+{
+  "oidc": [{
+    "permissions": {
+      "managedPolicies": ["AmazonS3FullAccess"],
+      "inlinePolicies": [
+        {
+          "actions": [ "dynamodb:GetItem", "dynamodb:PutItem", "dynamodb:UpdateItem", "dynamodb:DeleteItem", "dynamodb:Query", "dynamodb:Scan" ],
+          "resources": [
+            { "type":"dynamodb", "name":"table/fem-dev-*" },
+            { "type":"dynamodb", "name":"table/fem-qa-*" }
+          ]
+        }
+      ]
+    }
+  }],
+  "tables": [
+    {
+      "name": "products",
+      "streamEnabled": true,
+      "globalSecondaryIndexes": [
+        {
+          "indexName": "string",
+          "partitionKey": { "name": "string", "type": "STRING" },
+          "projectionType": "ALL"
+        }
+      ]
+    },
+    {
+      "name": "food",
+      "streamEnabled": true
+    },
+    {
+      "name": "jobs",
+      "globalSecondaryIndexes": [
+        {
+          "indexName": "gsiValuablePublishedDateTime",
+          "partitionKey": { "name": "valuable", "type": "NUMBER" },
+          "sortKey": { "name": "publishedDateTime", "type": "NUMBER" },
+          "projectionType": "ALL"
+        }
+      ]
+    },
+    {
+      "name": "movies",
+      "streamEnabled": true
+    }
+  ]
+}
