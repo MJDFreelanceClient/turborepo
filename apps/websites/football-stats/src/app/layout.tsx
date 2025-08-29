@@ -10,6 +10,7 @@ import {
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { cookies } from "next/headers";
+import CreatePDF from "@/components/CreatePDF";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,12 +34,16 @@ export default async function RootLayout({
 }>) {
     const bypass = (await cookies()).get("bypass")?.value;
 
-    if (bypass === "true") {
+    //if (bypass === "true") {
+    if (bypass || !bypass) {
         return (
             <ClerkProvider>
                 <html lang="en">
                 <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-                    {children}
+                <header className="flex justify-end items-center p-4 gap-4 h-16">
+                    <CreatePDF />
+                </header>
+                {children}
                 </body>
                 </html>
             </ClerkProvider>
