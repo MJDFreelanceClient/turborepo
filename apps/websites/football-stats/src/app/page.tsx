@@ -14,8 +14,11 @@ export default async function Home() {
                 <main className="w-full gap-[32px] row-start-2 items-center sm:items-start ">
                     <Suspense fallback={<div>Loading teams...</div>}>
                         <TeamSelect />
-                        <div className="p-4 w-full min-w-[300px] h-[300px] xl:min-w-[700px] xl:h-[700px] bg-white rounded-[20px] border">
-                            <RadarExample />
+                        <div className="p-4 w-full  bg-white rounded-[20px] border">
+                            <h2 className={`text-[32px]`}>Pass Per Defensive Action</h2>
+                            <div className="p-4 w-full min-w-[300px] h-[300px] xl:min-w-[700px] xl:h-[700px] bg-white rounded-[20px]">
+                                <RadarExample />
+                            </div>
                         </div>
                     </Suspense>
                 </main>
@@ -31,8 +34,11 @@ export default async function Home() {
             <main className="w-full gap-[32px] row-start-2 items-center sm:items-start ">
                 <Suspense fallback={<div>Loading teams...</div>}>
                     <TeamSelect />
-                    <div className="p-4 w-full min-w-[300px] h-[300px] xl:min-w-[700px] xl:h-[700px] bg-white rounded-[20px] border">
-                        <RadarExample />
+                    <div className="p-4 w-full  bg-white rounded-[20px] border">
+                        <h2 className={`text-[32px]`}>Pass Per Defensive Action</h2>
+                        <div className="p-4 w-full min-w-[300px] h-[300px] xl:min-w-[700px] xl:h-[700px] bg-white rounded-[20px]">
+                            <RadarExample />
+                        </div>
                     </div>
                 </Suspense>
             </main>
