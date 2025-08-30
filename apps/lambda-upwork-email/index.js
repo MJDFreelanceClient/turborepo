@@ -23,7 +23,7 @@ function itemToCard(item) {
       ${
         title
             ? `<h2 style="margin: 0 0 4px 0;">
-               ${item.id ? `<a href="https://www.upwork.com/jobs/~02${item.id}" style="color: #0066cc; text-decoration: none;">${title}</a>` : title}
+               ${item.id ? `<a href="https://turborepo-upwork-app.vercel.app/api/clickthrough/${item.id}" style="color: #0066cc; text-decoration: none;">${title}</a>` : title}
              </h2>`
             : ""
     }
