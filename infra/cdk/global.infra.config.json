@@ -41,6 +41,17 @@
       ]
     },
     {
+      "name": "jobclickthroughs",
+      "globalSecondaryIndexes": [
+        {
+          "indexName": "gsiClickedDateTime",
+          "partitionKey": { "name": "job", "type": "STRING" },
+          "sortKey": { "name": "clickedDateTime", "type": "NUMBER" },
+          "projectionType": "ALL"
+        }
+      ]
+    },
+    {
       "name": "movies",
       "streamEnabled": true
     }

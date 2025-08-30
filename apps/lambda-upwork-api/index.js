@@ -171,7 +171,7 @@ function formatValue(job) {
 
 function valuable(job) {
     const value = formatValue(job.node);
-    if ((value.type==="per hour" && Number(value.value)>80) || (value.type==="per project" && Number(value.value)>=1000)) {
+    if ((value.type==="per hour" && Number(value.value)>=60) || (value.type==="per project" && Number(value.value)>=1000)) {
         //if (value.category === "web_mobile_software_dev") {
         return true;
         //}

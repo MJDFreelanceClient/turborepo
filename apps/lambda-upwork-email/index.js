@@ -27,8 +27,8 @@ function itemToCard(item) {
              </h2>`
             : ""
     }
+      ${value ? `<b style="margin: 0 0 8px 0;">${value.value}${value.currency} ${value.type}</b>` : ""}
       ${description ? `<p style="margin: 0 0 8px 0;">${description}</p>` : ""}
-      ${value ? `<pre style="margin: 0 0 8px 0;">${JSON.stringify(value)}</p>` : ""}
       <table cellpadding="0" cellspacing="0" style="border-collapse: collapse; width: 100%;">
         ${rows}
       </table>
@@ -37,7 +37,7 @@ function itemToCard(item) {
 }
 
 export const handler = async (event) => {
-    const halfHourAgo = Math.floor(Date.now() / 1000) - (30 * 60);
+    const halfHourAgo = Math.floor(Date.now()) - (30 * 60 * 1000);
 
     const params = {
         TableName: "fem-qa-jobs",
@@ -66,6 +66,8 @@ export const handler = async (event) => {
         subject: 'New jobs found',
         html,
     });
+
+    console.log(`${filteredItems.length} items sent`);
 
     return filteredItems;
 };
