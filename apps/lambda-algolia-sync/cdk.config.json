@@ -15,6 +15,11 @@
       "name": "movies",
       "permissions": ["read", "write"],
       "isStreamHandler": true
+    },
+    {
+      "name": "jobs",
+      "permissions": ["read", "write"],
+      "isStreamHandler": true
     }
   ],
   "layers": ["algolia-client", "dynamo-client"]

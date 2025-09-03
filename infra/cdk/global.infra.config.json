@@ -38,6 +38,18 @@
           "sortKey": { "name": "publishedDateTime", "type": "NUMBER" },
           "projectionType": "ALL"
         }
+      ],
+      "streamEnabled": true
+    },
+    {
+      "name": "job-classification",
+      "globalSecondaryIndexes": [
+        {
+          "indexName": "gsiVersionTimestamp",
+          "partitionKey": { "name": "version", "type": "STRING" },
+          "sortKey": { "name": "timestamp", "type": "NUMBER" },
+          "projectionType": "ALL"
+        }
       ]
     },
     {

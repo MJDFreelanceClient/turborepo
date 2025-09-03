@@ -11,6 +11,8 @@
   "dependencies": {
     "@aws-sdk/client-dynamodb": "^3.840.0",
     "@aws-sdk/lib-dynamodb": "^3.840.0",
+    "@clerk/nextjs": "^6.31.6",
+    "@tanstack/react-query": "^5.81.5",
     "@upstash/redis": "^1.35.3",
     "next": "15.5.0",
     "react": "19.1.0",

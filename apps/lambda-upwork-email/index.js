@@ -1,6 +1,6 @@
-import { QueryCommand } from "@aws-sdk/lib-dynamodb";
 import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
-import { DynamoDBDocumentClient, PutCommand } from "@aws-sdk/lib-dynamodb";
+import { DynamoDBDocumentClient, PutCommand, QueryCommand } from "@aws-sdk/lib-dynamodb";
+import {classifyJobs} from "./openai.js";
 import { Resend } from 'resend';
 
 const client = new DynamoDBClient({});
@@ -36,7 +36,25 @@ function itemToCard(item) {
   `;
 }
 
+const saveItem = async (item) => {
+    try {
+
+        const params = {
+            TableName: "fem-qa-job-classification",
+            Item: item
+        };
+
+        await ddbDocClient.send(new PutCommand(params));
+
+        return "Saved"
+    } catch (err) {
+        console.error("DynamoDB error:", err);
+        throw "Could not save item"
+    }
+};
+
 export const handler = async (event) => {
+    const { classifyJobs } = await import('./openai.js')
     const halfHourAgo = Math.floor(Date.now()) - (30 * 60 * 1000);
 
     const params = {
@@ -58,16 +76,42 @@ export const handler = async (event) => {
         return "No matching jobs";
     }
 
-    const html = filteredItems.map(itemToCard).join("");
+    const classifiedItems = await classifyJobs(filteredItems)
 
-    await resend.emails.send({
-        from: 'no-reply@michaeljdfreelance.com',
-        to: "michael@michaeljdfreelance.com",
-        subject: 'New jobs found',
-        html,
-    });
+    console.log("filtered items", filteredItems);
+
+    console.log("classified items", classifiedItems);
+
+    // Build a lookup of results by job id
+    const classificationMap = Object.fromEntries(
+        classifiedItems.map(c => [c.id, c.decision])
+    );
+
+    console.log("classificationMap", classificationMap);
+
+// Filter jobs where classification is "hit"
+    const hits = filteredItems.filter(job => classificationMap[job.id] === "hit");
+
+    await Promise.all(
+        classifiedItems.map(row =>
+            saveItem({ ...row, timestamp: Date.now(), version: "0.0.1" })
+        )
+    );
+
+    if (hits.length > 0) {
+
+        const html = hits.map(itemToCard).join("");
+
+        await resend.emails.send({
+            from: 'no-reply@michaeljdfreelance.com',
+            to: "michael@michaeljdfreelance.com",
+            subject: 'New jobs found',
+            html,
+        });
+
+    }
 
     console.log(`${filteredItems.length} items sent`);
 
-    return filteredItems;
+    return hits;
 };
