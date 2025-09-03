@@ -11,7 +11,7 @@ export default function Layout({
                 {children}
             </SignedIn>
             <SignedOut>
-                <SignIn routing="hash" />
+                Please sign in
             </SignedOut>
         </>
   );
