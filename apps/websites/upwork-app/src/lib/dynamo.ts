@@ -5,24 +5,19 @@ import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
 import {NumberValue, PutCommand, QueryCommand} from "@aws-sdk/lib-dynamodb";
 import { DynamoDBDocumentClient } from "@aws-sdk/lib-dynamodb";
 import {fromWebToken} from "@aws-sdk/credential-providers";
+import { awsCredentialsProvider } from '@vercel/functions/oidc';
 
 export const getClient = async () => {
     const region = process.env.AWS_REGION!;
     const roleArn = process.env.AWS_ROLE_ARN!;
-    const token = process.env.VERCEL_OIDC_TOKEN!;
-
-    console.log("OIDC token length:", process.env.VERCEL_OIDC_TOKEN?.length);
 
     const baseClient = new DynamoDBClient({
         region,
-        credentials: fromWebToken({
+        credentials: awsCredentialsProvider({
             roleArn,
-            webIdentityToken: token,
-            roleSessionName: 'vercel-session',
         }),
     });
 
-// Create the lib-dynamodb wrapper
     return DynamoDBDocumentClient.from(baseClient);
 }
 
