@@ -6,21 +6,23 @@ import {NumberValue, PutCommand, QueryCommand} from "@aws-sdk/lib-dynamodb";
 import { DynamoDBDocumentClient } from "@aws-sdk/lib-dynamodb";
 import {fromWebToken} from "@aws-sdk/credential-providers";
 
-const region = process.env.AWS_REGION!;
-const roleArn = process.env.AWS_ROLE_ARN!;
-const token = process.env.VERCEL_OIDC_TOKEN!;
+export const getClient = async () => {
+    const region = process.env.AWS_REGION!;
+    const roleArn = process.env.AWS_ROLE_ARN!;
+    const token = process.env.VERCEL_OIDC_TOKEN!;
 
-const client = new DynamoDBClient({
-    region,
-    credentials: fromWebToken({
-        roleArn,
-        webIdentityToken: token,
-        roleSessionName: 'vercel-session',
-    }),
-});
+    const baseClient = new DynamoDBClient({
+        region,
+        credentials: fromWebToken({
+            roleArn,
+            webIdentityToken: token,
+            roleSessionName: 'vercel-session',
+        }),
+    });
 
-// Use DynamoDBDocumentClient to simplify working with native JS objects
-const ddbDocClient = DynamoDBDocumentClient.from(client);
+// Create the lib-dynamodb wrapper
+    return DynamoDBDocumentClient.from(baseClient);
+}
 
 const autogenerateId = () => {
     return Date.now().toString();
@@ -37,7 +39,7 @@ export async function addItem(Item:any) {
     };
 
     try {
-        const data = await ddbDocClient.send(new PutCommand(params));
+        const data = (await getClient()).send(new PutCommand(params));
         console.log("Success - item added:", data);
     } catch (err) {
         console.error("Error", err);
@@ -58,7 +60,7 @@ export async function getLatestJobs(since:number) {
         ScanIndexForward: false   // newest first (optional)
     };
 
-    return await ddbDocClient.send(new QueryCommand(params));
+    return await (await getClient()).send(new QueryCommand(params));
 }
 
 export async function getClassification(id: string) {
@@ -71,7 +73,7 @@ export async function getClassification(id: string) {
         },
     };
 
-    const response = await ddbDocClient.send(new QueryCommand(params));
+    const response = await (await getClient()).send(new QueryCommand(params));
 
     console.log("classification response", response);
 
