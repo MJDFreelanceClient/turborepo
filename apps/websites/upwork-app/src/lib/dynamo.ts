@@ -11,6 +11,8 @@ export const getClient = async () => {
     const roleArn = process.env.AWS_ROLE_ARN!;
     const token = process.env.VERCEL_OIDC_TOKEN!;
 
+    console.log("OIDC token length:", process.env.VERCEL_OIDC_TOKEN?.length);
+
     const baseClient = new DynamoDBClient({
         region,
         credentials: fromWebToken({
