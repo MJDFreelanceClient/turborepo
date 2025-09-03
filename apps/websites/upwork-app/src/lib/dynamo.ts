@@ -39,7 +39,7 @@ export async function addItem(Item:any) {
     };
 
     try {
-        const data = (await getClient()).send(new PutCommand(params));
+        const data = await (await getClient()).send(new PutCommand(params));
         console.log("Success - item added:", data);
     } catch (err) {
         console.error("Error", err);
