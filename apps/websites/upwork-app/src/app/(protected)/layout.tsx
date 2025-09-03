@@ -1,5 +1,3 @@
-"use client"
-
 import {SignedIn, SignedOut, SignIn} from "@clerk/nextjs";
 
 export default function Layout({
