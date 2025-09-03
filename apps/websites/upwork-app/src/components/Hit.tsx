@@ -7,10 +7,10 @@ export function useClassification(jobId: string) {
     return useQuery({
         queryKey: ["classification", jobId],
         queryFn: () => getClassification(jobId),
-        enabled: !!jobId,        // only run if we have an id
-        staleTime: data => (data ? Infinity : 0), // ⚡ pseudo-code, see note below
-        cacheTime: 1000 * 60 * 60 * 24, // keep in cache for 24h
-        refetchInterval: (data) => (data ? false : 5000), // poll if not ready
+        enabled: !!jobId,
+        staleTime: (data) => (data ? Infinity : 0), // Still valid—controls freshness
+        gcTime: 1000 * 60 * 60 * 24, // Use gcTime instead of cacheTime
+        refetchInterval: (data) => (data ? false : 5000),
     });
 }
 
