@@ -4,9 +4,20 @@
 import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
 import {NumberValue, PutCommand, QueryCommand} from "@aws-sdk/lib-dynamodb";
 import { DynamoDBDocumentClient } from "@aws-sdk/lib-dynamodb";
+import {fromWebToken} from "@aws-sdk/credential-providers";
 
-// Create an Amazon DynamoDB service client object.
-const client = new DynamoDBClient({ region: "us-east-1" });
+const region = process.env.AWS_REGION!;
+const roleArn = process.env.AWS_ROLE_ARN!;
+const token = process.env.VERCEL_OIDC_TOKEN!;
+
+const client = new DynamoDBClient({
+    region,
+    credentials: fromWebToken({
+        roleArn,
+        webIdentityToken: token,
+        roleSessionName: 'vercel-session',
+    }),
+});
 
 // Use DynamoDBDocumentClient to simplify working with native JS objects
 const ddbDocClient = DynamoDBDocumentClient.from(client);
