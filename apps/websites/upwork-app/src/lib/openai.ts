@@ -2,7 +2,7 @@
 
 import OpenAI from "openai";
 
-export const getReccomendation = async (job) => {
+export const getReccomendation = async (job:any) => {
     const client = new OpenAI({
         apiKey: process.env.OPENAI_API_KEY, // set in Lambda env vars
     });
