@@ -53,6 +53,9 @@
       ]
     },
     {
+      "name": "job-application-guidance"
+    },
+    {
       "name": "jobclickthroughs",
       "globalSecondaryIndexes": [
         {

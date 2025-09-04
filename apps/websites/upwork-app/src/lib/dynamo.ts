@@ -2,8 +2,8 @@
 
 // Import the required AWS SDK clients and commands for Node.js
 import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
-import {NumberValue, PutCommand, QueryCommand} from "@aws-sdk/lib-dynamodb";
-import { DynamoDBDocumentClient } from "@aws-sdk/lib-dynamodb";
+import {NumberValue, QueryCommand} from "@aws-sdk/lib-dynamodb";
+import { DynamoDBDocumentClient, PutCommand  } from "@aws-sdk/lib-dynamodb";
 import {fromWebToken} from "@aws-sdk/credential-providers";
 import { awsCredentialsProvider } from '@vercel/functions/oidc';
 
@@ -43,6 +43,20 @@ export async function addItem(Item:any) {
     }
 }
 
+export async function saveGuidance(Item:any) {
+    const params = {
+        TableName: "fem-qa-job-application-guidance",
+        Item,
+    };
+
+    try {
+        const data = await (await getClient()).send(new PutCommand(params));
+        console.log("Success - item added:", data);
+    } catch (err) {
+        console.error("Error", err);
+    }
+}
+
 export async function getLatestJobs(since:number) {
     const params = {
         TableName: "fem-qa-jobs",
@@ -64,6 +78,40 @@ export async function getClassification(id: string) {
     console.log("getting classification", id);
     const params = {
         TableName: "fem-qa-job-classification",
+        KeyConditionExpression: "id = :id",
+        ExpressionAttributeValues: {
+            ":id": id,
+        },
+    };
+
+    const response = await (await getClient()).send(new QueryCommand(params));
+
+    console.log("classification response", response);
+
+    return (response).Items?.[0] || null;
+}
+
+export async function getGuidance(id: string) {
+    console.log("getting guidance", id);
+    const params = {
+        TableName: "fem-qa-job-application-guidance",
+        KeyConditionExpression: "id = :id",
+        ExpressionAttributeValues: {
+            ":id": id,
+        },
+    };
+
+    const response = await (await getClient()).send(new QueryCommand(params));
+
+    console.log("classification response", response);
+
+    return (response).Items?.[0] || null;
+}
+
+export async function getJob(id: string) {
+    console.log("getting job", id);
+    const params = {
+        TableName: "fem-qa-jobs",
         KeyConditionExpression: "id = :id",
         ExpressionAttributeValues: {
             ":id": id,

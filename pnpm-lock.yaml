@@ -78,6 +78,12 @@ importers:
       luxon:
         specifier: ^3.6.1
         version: 3.7.1
+      openai:
+        specifier: ^5.16.0
+        version: 5.16.0
+      resend:
+        specifier: ^6.0.1
+        version: 6.0.1
 
   apps/lambda-upwork-email:
     dependencies:
@@ -280,6 +286,9 @@ importers:
       next:
         specifier: 15.5.0
         version: 15.5.0(react-dom@19.1.0)(react@19.1.0)
+      openai:
+        specifier: ^5.16.0
+        version: 5.16.0
       react:
         specifier: 19.1.0
         version: 19.1.0

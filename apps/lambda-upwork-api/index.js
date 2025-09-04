@@ -2,13 +2,75 @@ import {ClientError, gql, GraphQLClient} from "graphql-request";
 import {DateTime} from "luxon";
 import { redis } from "./redis.js";
 import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
-import { DynamoDBDocumentClient, PutCommand } from "@aws-sdk/lib-dynamodb";
+import { DynamoDBDocumentClient, PutCommand, QueryCommand } from "@aws-sdk/lib-dynamodb";
+import { classifyJobs } from "./openai.js";
+import { Resend } from "resend";
+import { doRefresh, getAuthToken, handle401, logIn, isLoggedIn } from "./auth.js"; // assuming you meant to include this
 
 const client = new DynamoDBClient({});
 const ddbDocClient = DynamoDBDocumentClient.from(client);
+const resend = new Resend(process.env.RESEND_API_KEY);
 
-import {getAuthToken, handle401, logIn, isLoggedIn} from "./auth.js";
-//import {getRecords, upsertRecords} from "./main/db.js";
+async function jobExists(id, version) {
+    try {
+        console.log("getting job", id);
+        const params = {
+            TableName: "fem-qa-jobs",
+            KeyConditionExpression: "id = :id",
+            ExpressionAttributeValues: {
+                ":id": id,
+            },
+        };
+
+        const response = await ddbDocClient.send(new QueryCommand(params));
+
+        console.log("classification response", response);
+
+        return (response).Items?.[0] || null;
+    } catch (err) {
+        console.error("DynamoDB jobExists error:", err);
+        return false; // fail safe: treat as new if error
+    }
+}
+
+function itemToCard(item) {
+    // pick out title & description specially
+    const { title, description, value, ...rest } = item;
+
+    const rows = Object.entries(rest).map(([k, v]) => `
+      <tr>
+        <th align="left" style="padding: 4px 8px; border: 1px solid #ddd; background:#f9f9f9;">${k}</th>
+        <td style="padding: 4px 8px; border: 1px solid #ddd;"><pre>${JSON.stringify(v, null, 2)}</pre></td>
+      </tr>
+    `).join("");
+
+    return `
+    <div style="margin-bottom: 20px; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">
+      ${
+        title
+            ? `<h2 style="margin: 0 0 4px 0;">
+               ${item.id ? `<a href="https://turborepo-upwork-app.vercel.app/api/clickthrough/${item.id}" style="color: #0066cc; text-decoration: none;">${title}</a>` : title}
+             </h2>`
+            : ""
+    }
+      ${value ? `<b style="margin: 0 0 8px 0;">${value.value}${value.currency} ${value.type}</b>` : ""}
+      ${description ? `<p style="margin: 0 0 8px 0;">${description}</p>` : ""}
+      <table cellpadding="0" cellspacing="0" style="border-collapse: collapse; width: 100%;">
+        ${rows}
+      </table>
+    </div>
+  `;
+}
+
+async function saveItem(tableName, item) {
+    try {
+        await ddbDocClient.send(new PutCommand({ TableName: tableName, Item: item }));
+        return "Saved";
+    } catch (err) {
+        console.error("DynamoDB error:", err);
+        throw new Error("Could not save item");
+    }
+}
 
 const getRecords = () => {
     return []
@@ -17,23 +79,6 @@ const getRecords = () => {
 const upsertRecords = () => {
 
 }
-
-const saveItem = async (item) => {
-    try {
-
-        const params = {
-            TableName: "fem-qa-jobs",
-            Item: item
-        };
-
-        await ddbDocClient.send(new PutCommand(params));
-
-        return "Saved"
-    } catch (err) {
-        console.error("DynamoDB error:", err);
-        throw "Could not save item"
-    }
-};
 
 function toEpochMs(ts) {
     if (typeof ts === 'number') return ts;                // already ms
@@ -46,74 +91,140 @@ function toEpochMs(ts) {
     return Date.now(); // fallback
 }
 
-export const loadJobs = async (variables, fields) => {
-    const client = new GraphQLClient('https://api.upwork.com/graphql', {
-        headers: {
-            Authorization: `Bearer ${await getAuthToken()}`,
-        }
+async function fetchJobs(variables, fields) {
+    const client = new GraphQLClient("https://api.upwork.com/graphql", {
+        headers: { Authorization: `Bearer ${await getAuthToken()}` }
     });
 
-    const fieldList = fields.join('\n');
+    const fieldList = fields.join("\n");
 
     const query = gql`
     query SearchJobs(
       $marketPlaceJobFilter: MarketplaceJobPostingsSearchFilter,
-      
       $searchType: MarketplaceJobPostingSearchType,
       $sortAttributes: [MarketplaceJobPostingSearchSortAttribute]
     ) {
-        marketplaceJobPostingsSearch(
-            marketPlaceJobFilter: $marketPlaceJobFilter,
-            searchType: $searchType,
-            sortAttributes: $sortAttributes
-        ) {
-            totalCount
-            edges {
-                node {
-                    ${fieldList}
-                }
+      marketplaceJobPostingsSearch(
+        marketPlaceJobFilter: $marketPlaceJobFilter,
+        searchType: $searchType,
+        sortAttributes: $sortAttributes
+      ) {
+        totalCount
+        edges {
+          node {
+            ${fieldList}
+          }
+        }
+      }
+    }
+  `;
+
+    const data = await client.request(query, variables);
+    return sanitizeJobsResult(data);
+}
+
+function filterValuableJobs(jobs) {
+    return jobs.filter(job => valuable(job));
+}
+
+async function classifyAndSave(jobs) {
+    if (jobs.length === 0) return { hits: [], classifications: [] };
+
+    const classifiedItems = await classifyJobs(jobs);
+    await Promise.all(
+        classifiedItems.map(c =>
+            saveItem("fem-qa-job-classification", { ...c, timestamp: Date.now(), version: "0.0.1" })
+        )
+    );
+
+    const classificationMap = Object.fromEntries(classifiedItems.map(c => [c.id, c.decision]));
+    const hits = jobs.filter(job => classificationMap[job.id] === "hit");
+
+    return { hits, classifications: classifiedItems };
+}
+
+async function notifyHits(hits) {
+    if (hits.length === 0) return;
+    const html = hits.map(item => itemToCard(item)).join("");
+    await resend.emails.send({
+        from: "no-reply@michaeljdfreelance.com",
+        to: "michael@michaeljdfreelance.com",
+        subject: "New jobs found",
+        html,
+    });
+}
+
+async function persistJobs(jobs, classifications) {
+    const classificationMap = Object.fromEntries(classifications.map(c => [c.id, c]));
+    await Promise.all(
+        jobs.map(async job => {
+            const classification = classificationMap[job.id];
+
+            if (classification) {
+                job.verdict = classification.decision;
+                job.verdict_reason = classification.reason;
             }
-        }
-    }`;
 
+            job.publishedDateTime = toEpochMs(job.publishedDateTime);
+            job.value = formatValue(job);
+            job.valuable = valuable(job) ? 1 : 0;
+
+            await saveItem("fem-qa-jobs", job);
+        })
+    );
+}
+
+async function normalizeAndDedupe(edges, version = "0.0.1") {
+    const nodes = edges.map(e => e?.node).filter(Boolean);
+
+    // Deduplicate within the batch itself
+    const unique = [...new Map(nodes.map(job => [job.id, job])).values()];
+
+    // Check existence in Dynamo
+    const results = await Promise.all(
+        unique.map(async job => {
+            const exists = await jobExists(job.id, version);
+            return exists ? null : job;
+        })
+    );
+
+    return results.filter(Boolean); // drop nulls
+}
+
+async function publishJobs(jobs) {
+    const jobsToPublish = jobs
+        .filter(row => valuable(row))
+        .map(row => ({
+            id: row.id,
+            title: row.title,
+            value: formatValue(row),
+            category: row.category,
+            publishedDateTime: toEpochMs(row.publishedDateTime)
+        }));
+
+    if (jobsToPublish.length > 0) {
+        redis.publish("jobs", jobsToPublish);
+    }
+}
+
+export async function loadJobs(variables, fields) {
     try {
-        const data = await client.request(query, variables);
-        const sanitizedJobs = sanitizeJobsResult(data);
-        const rows = sanitizedJobs.marketplaceJobPostingsSearch.edges;
-
-        console.log("total jobs", rows.length)
-
-        if (rows.filter(valuable).length > 0) {
-            console.log("valuable jobs", JSON.stringify(rows.filter(valuable), null, 2))
-            //new Notification({ title: 'Notification', body: 'Valuable jobs received from Electron' }).show();
-            await Promise.all(
-                rows.map(async (row) => {
-                    let job = row.node;
-                    console.log("saving job", JSON.stringify(job, null, 2));
-
-                    job.publishedDateTime = toEpochMs(job.publishedDateTime);
-                    job.value = formatValue(job);
-                    job.valuable = valuable(row)?1:0;
-
-                    await saveItem(job);
-                })
-            );
-            redis.publish("jobs", rows.filter(valuable).map(job=>({id:job.node.id, title:job.node.title, value: formatValue(job.node), category:job.node.category, publishedDateTime:toEpochMs(job.node.publishedDateTime)})))
-        }
-        else {
-            console.log("no valuable jobs")
-        }
-
-        upsertRecords(rows);
-        const datetime = DateTime.now().minus({ hours: 5 }).toMillis();
-        const records = getRecords(datetime);
+        const rows = await fetchJobs(variables, fields);
+        const edges = rows.marketplaceJobPostingsSearch.edges;
+        const jobs = await normalizeAndDedupe(edges);
+        const valuableJobs = filterValuableJobs(jobs);
+        const { hits, classifications } = await classifyAndSave(
+            valuableJobs.filter(job => job.category === "web_mobile_software_dev")
+        );
+        await notifyHits(hits);
+        await persistJobs(jobs, classifications);
+        await publishJobs(jobs);
 
         return {
             marketplaceJobPostingsSearch: {
-                edges: records
+                edges: getRecords(DateTime.now().minus({ hours: 5 }).toMillis())
             }
         };
-
     } catch (err) {
         // Handle GraphQL errors with partial data
         if (err instanceof ClientError && err.response?.data) {
@@ -169,14 +280,12 @@ function formatValue(job) {
     }
 }
 
-function valuable(job) {
-    const value = formatValue(job.node);
-    if ((value.type==="per hour" && Number(value.value)>=60) || (value.type==="per project" && Number(value.value)>=1000)) {
-        //if (value.category === "web_mobile_software_dev") {
-        return true;
-        //}
-    }
-    return false;
+function valuable(jobNode) {
+    const value = formatValue(jobNode);
+    return (
+        (value.type === "per hour" && Number(value.value) >= 60) ||
+        (value.type === "per project" && Number(value.value) >= 1000)
+    );
 }
 
 function sanitizeJobsResult(raw, { requireExpLevel = false } = {}) {
@@ -238,7 +347,19 @@ const variables = {
 };
 
 export const handler = async (event) => {
-    const attemptResponse = await attemptLogin();
-    console.log(JSON.stringify(attemptResponse, null, 2));
-    await loadJobs(variables, fields)
+    try {
+        const attemptResponse = await attemptLogin();
+        console.log("Login response:", attemptResponse);
+        const jobs = await loadJobs(variables, fields);
+        return {
+            statusCode: 200,
+            body: JSON.stringify(jobs),
+        };
+    } catch (err) {
+        console.error("Handler error:", err);
+        return {
+            statusCode: 500,
+            body: JSON.stringify({ error: "Internal Server Error" }),
+        };
+    }
 };
