@@ -3,11 +3,13 @@
 import {getReccomendation} from "@/lib/openai";
 import {useEffect, useState} from "react";
 import {getGuidance, saveGuidance} from "@/lib/dynamo";
+import {Questions} from "@/components/Questions";
 
 export default function Recommendation({ data }:any) {
 
     return (
         <div className="space-y-6">
+            <h2 className="text-xl font-semibold mb-2">Analysis</h2>
             <Section title="Tone & Client Priorities" items={data.tone_and_priorities} />
             <Section title="Client Persona" items={data.client_persona} />
             <Section title="Your Best Tone" items={data.your_best_tone} />
@@ -36,6 +38,7 @@ function Section({ title, items }:any) {
 export const ApplicationAdvice = ({job}:any) => {
     const [response, setResponse] = useState<any|null>(null);
     const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [questions, setQuestions] = useState<string[]>([]);
     const {description} = job;
 
     useEffect(()=>{
@@ -52,7 +55,7 @@ export const ApplicationAdvice = ({job}:any) => {
         const request = {
             "job_post": {
                 description,
-                questions: [],
+                questions,
                 budget: job.value? `${job.value.value}${job.value.currency} ${job.value.type}`: "",
                 experience_level: job.experienceLevel,
                 duration: job.engagementDuration
@@ -76,6 +79,7 @@ export const ApplicationAdvice = ({job}:any) => {
         <>
             {job && <h1>{job.title}</h1>}
             {job && <p>{job.description}</p>}
+            <Questions questions={questions} setQuestions={setQuestions} />
             {response && <Recommendation data={response}/>}
             {!response && !isLoading && <button onClick={requestAdvice}>Request Advice</button>}
             {isLoading && <p>Loading...</p>}
