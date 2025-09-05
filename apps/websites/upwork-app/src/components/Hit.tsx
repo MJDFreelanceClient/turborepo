@@ -6,12 +6,26 @@ import {getClassification} from "@/lib/dynamo";
 export const Hit = ({job}:any) => {
     console.log("job", job)
 
+    const formatter = new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+    });
+
+    const projectRate =
+        job.value?.type === "per project"
+            ? job.max
+                ? formatter.format(job.value.value / job.max)
+                : "too low"
+            : null;
+
+
     return (
         <div key={job.id} className={`p-4 border-2 rounded-lg ${job?.verdict==="miss" && "border-red-800"} ${job?.verdict==="hit" && "bg-green-100"}`}>
             <div>
                 <span>{job.id}</span>
                 ${job.value && <b >{job.value.value}{job.value.currency} {job.value.type}</b>}
                 <h2 className="text-lg font-semibold">{job.title}</h2>
+                {job.max && projectRate && <p className={` ${job.value.value / job.max < 10 ? "text-red-800" : "text-gray-600"}`}>Time Range: {job.min} - {job.max} hours, Effective rate {projectRate}</p>}
                 <p className="text-gray-600">{job.description}</p>
                 <p className="text-gray-600">Posted: {new Date(job.publishedDateTime).toLocaleString()}</p>
                 <p>

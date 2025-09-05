@@ -1,11 +1,10 @@
 
 import dotenv from 'dotenv'
-import {estimateJobs} from "./openai.js";
 //import {handler} from "./index.js";
 
 dotenv.config()
 
-const { classifyJobs } = await import('./openai.js')
+const { estimateJobs } = await import('./openai.js')
 
 // Jobs can come from event body, but here’s an example:
 const jobs = [
