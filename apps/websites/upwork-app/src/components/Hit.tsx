@@ -1,7 +1,28 @@
 "use client"
 
-import { useQuery } from "@tanstack/react-query";
-import {getClassification} from "@/lib/dynamo";
+import JobDescription from "@/components/JobDescription";
+
+const description = `
+## Note
+We will send an offer and cover interview time.
+
+## About Us
+We are building an enterprise-grade AI SaaS platform...
+
+## Key Requirements
+1. **Ingestion & Enrichment**
+   - Ingest articles from multiple sources.
+   - Enrich with tags, metadata, embeddings.
+
+2. **Personalization**
+   - Filtering + ranking system per user profile.
+   - ...
+
+## Budget & Engagement
+- One-time project
+- 5 hours work
+- Budget: $1,000 – $2,000
+`;
 
 export const Hit = ({job}:any) => {
     console.log("job", job)
@@ -26,7 +47,7 @@ export const Hit = ({job}:any) => {
                 ${job.value && <b >{job.value.value}{job.value.currency} {job.value.type}</b>}
                 <h2 className="text-lg font-semibold">{job.title}</h2>
                 {job.max && projectRate && <p className={` ${job.value.value / job.max < 10 ? "text-red-800" : "text-gray-600"}`}>Time Range: {job.min} - {job.max} hours, Effective rate {projectRate}</p>}
-                <p className="text-gray-600">{job.description}</p>
+                <JobDescription text={job.description} />
                 <p className="text-gray-600">Posted: {new Date(job.publishedDateTime).toLocaleString()}</p>
                 <p>
                     Verdict: {job?.verdict_reason?job.verdict_reason: "Loading..."}
