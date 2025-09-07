@@ -8,6 +8,14 @@
     {
       "name": "job-classification",
       "permissions": ["read", "write"]
+    },
+    {
+      "name": "job-openai-tasks",
+      "permissions": ["read", "write"]
+    },
+    {
+      "name": "job-openai-versions",
+      "permissions": ["read", "write"]
     }
   ],
   "schedule": "rate(5m)"

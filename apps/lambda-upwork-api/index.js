@@ -5,7 +5,8 @@ import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
 import { DynamoDBDocumentClient, PutCommand, QueryCommand } from "@aws-sdk/lib-dynamodb";
 import { classifyJobs, estimateJobs } from "./openai.js";
 import { Resend } from "resend";
-import { doRefresh, getAuthToken, handle401, logIn, isLoggedIn } from "./auth.js"; // assuming you meant to include this
+import { doRefresh, getAuthToken, handle401, logIn, isLoggedIn } from "./auth.js";
+import {marked} from "marked"; // assuming you meant to include this
 
 const client = new DynamoDBClient({});
 const ddbDocClient = DynamoDBDocumentClient.from(client);
@@ -13,6 +14,7 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 
 async function jobExists(id, version) {
     try {
+        console.log("getting job", id);
         const params = {
             TableName: "fem-qa-jobs",
             KeyConditionExpression: "id = :id",
@@ -22,6 +24,8 @@ async function jobExists(id, version) {
         };
 
         const response = await ddbDocClient.send(new QueryCommand(params));
+
+        //console.log("classification response", response);
 
         return (response).Items?.[0] || null;
     } catch (err) {
@@ -51,7 +55,7 @@ function itemToCard(item) {
             : ""
     }
       ${value ? `<b style="margin: 0 0 8px 0;">${value.value}${value.currency} ${value.type}</b>` : ""}
-      ${description ? `<p style="margin: 0 0 8px 0;">${description}</p>` : ""}
+      ${description ? `<div style="margin: 0 0 8px 0;">${marked(description)}</div>` : ""}
       <table cellpadding="0" cellspacing="0" style="border-collapse: collapse; width: 100%;">
         ${rows}
       </table>
@@ -122,18 +126,24 @@ async function fetchJobs(variables, fields) {
 
 function filterValuableJobs(jobs) {
     let filteredJobs = jobs;
+    console.log("filteredJobs length 1", filteredJobs.length)
     filteredJobs = filteredJobs.filter(job => valuable(job));
+    console.log("filteredJobs length 2", filteredJobs.length)
     filteredJobs = filteredJobs.filter(job => job.category === "web_mobile_software_dev");
+    console.log("filteredJobs length 3", filteredJobs.length)
     return filteredJobs;
 }
 
 async function classifyAndSave(jobs) {
+    console.log("classifying ", jobs.length, " jobs")
     if (jobs.length === 0) {
         return { classificationMap: {}, estimationMap: {} };
     }
 
     const classifiedItems = await classifyJobs(jobs);
+    console.log("classifiedItems", classifiedItems)
     const estimations = await estimateJobs(jobs.filter(j=>!j.hourlyBudgetMax));
+    console.log("estimations", estimations)
     await Promise.all(
         classifiedItems.map(c =>
             saveItem("fem-qa-job-classification", { ...c, timestamp: Date.now(), version: "0.0.1" })
@@ -142,6 +152,8 @@ async function classifyAndSave(jobs) {
 
     const classificationMap = Object.fromEntries(classifiedItems.map(c => [c.id, c]));
     const estimationMap = Object.fromEntries(estimations.map(e => [e.id, { min: e.min, max: e.max }]));
+
+
 
     return { classificationMap, estimationMap };
 }
@@ -185,6 +197,7 @@ function isValuableProject(job) {
 }
 
 async function notifyHits(jobs) {
+    console.log("first job to check", jobs?.[0])
     const hits = jobs.filter(job => job.verdict === "hit" && job.valuable === 1 &&
         job.category === "web_mobile_software_dev" &&
         (!!job.hourlyBudgetMax || isValuableProject(job)));
@@ -208,6 +221,8 @@ async function persistJobs(jobs, classifications) {
 
 async function normalizeAndDedupe(edges, version = "0.0.1") {
     const nodes = edges.map(e => e?.node).filter(Boolean);
+    console.log("node length", nodes.length);
+    console.log("first node", nodes?.[0]);
     //return nodes;
 
     // Deduplicate within the batch itself
@@ -240,24 +255,15 @@ async function publishJobs(jobs) {
     }
 }
 
-export function addValue(jobs) {
-    return jobs.map(job => {
-        const value = formatValue(job);
-        return {
-            ...job,
-            value
-        }
-    })
-}
-
 export async function loadJobs(variables, fields) {
     try {
         const rows = await fetchJobs(variables, fields);
         const edges = rows.marketplaceJobPostingsSearch.edges;
-        let rawJobs = await normalizeAndDedupe(edges);
-        const jobs = addValue(rawJobs);
+        const jobs = await normalizeAndDedupe(edges);
         const valuableJobs = filterValuableJobs(jobs);
-        const { classificationMap, estimationMap } = await classifyAndSave(valuableJobs);
+        const { classificationMap, estimationMap } = await classifyAndSave(
+            valuableJobs
+        );
         const hydratedJobs = hydrateJobs(jobs, classificationMap, estimationMap)
         await notifyHits(hydratedJobs);
         await persistJobs(hydratedJobs);
@@ -269,7 +275,40 @@ export async function loadJobs(variables, fields) {
             }
         };
     } catch (err) {
-       await handleError(err)
+        // Handle GraphQL errors with partial data
+        if (err instanceof ClientError && err.response?.data) {
+            console.warn('GraphQL errors:', err.response.errors);
+            const partial = sanitizeJobsResult(err.response.data);
+            return partial;
+        }
+
+        // Handle 401 Unauthorized explicitly
+        if (err instanceof ClientError && err.response?.status === 401) {
+            console.warn('Unauthorized (401): Token may be invalid or expired.');
+            await handle401();
+            // Optionally trigger a logout flow or token refresh here
+            return {
+                error: 'unauthorized',
+                message: 'Your session has expired. Please log in again.',
+                marketplaceJobPostingsSearch: { edges: [] }
+            };
+        }
+
+        if (err.code === 'ECONNREFUSED' || err.code === 'ENOTFOUND') {
+            console.error('Network error:', err.message);
+            return {
+                error: 'network',
+                message: 'Unable to connect to the server. Please check your internet connection.',
+                marketplaceJobPostingsSearch: { edges: [] }
+            };
+        }
+
+        console.error('Unexpected GraphQL error:', err);
+        return {
+            error: 'unknown',
+            message: 'An unexpected error occurred.',
+            marketplaceJobPostingsSearch: { edges: [] }
+        };
     }
 }
 
@@ -357,43 +396,6 @@ const variables = {
         pagination_eq: { "after": 0, "first": 100 }
     }
 };
-
-async function handleError(err) {
-    // Handle GraphQL errors with partial data
-    if (err instanceof ClientError && err.response?.data) {
-        console.warn('GraphQL errors:', err.response.errors);
-        const partial = sanitizeJobsResult(err.response.data);
-        return partial;
-    }
-
-    // Handle 401 Unauthorized explicitly
-    if (err instanceof ClientError && err.response?.status === 401) {
-        console.warn('Unauthorized (401): Token may be invalid or expired.');
-        await handle401();
-        // Optionally trigger a logout flow or token refresh here
-        return {
-            error: 'unauthorized',
-            message: 'Your session has expired. Please log in again.',
-            marketplaceJobPostingsSearch: { edges: [] }
-        };
-    }
-
-    if (err.code === 'ECONNREFUSED' || err.code === 'ENOTFOUND') {
-        console.error('Network error:', err.message);
-        return {
-            error: 'network',
-            message: 'Unable to connect to the server. Please check your internet connection.',
-            marketplaceJobPostingsSearch: { edges: [] }
-        };
-    }
-
-    console.error('Unexpected GraphQL error:', err);
-    return {
-        error: 'unknown',
-        message: 'An unexpected error occurred.',
-        marketplaceJobPostingsSearch: { edges: [] }
-    };
-}
 
 export const handler = async (event) => {
     try {

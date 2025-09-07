@@ -78,6 +78,9 @@ importers:
       luxon:
         specifier: ^3.6.1
         version: 3.7.1
+      marked:
+        specifier: ^16.2.1
+        version: 16.2.1
       openai:
         specifier: ^5.16.0
         version: 5.16.0
@@ -85,6 +88,12 @@ importers:
         specifier: ^6.0.1
         version: 6.0.1
     devDependencies:
+      '@aws-sdk/client-dynamodb':
+        specifier: ^3.840.0
+        version: 3.840.0
+      '@aws-sdk/lib-dynamodb':
+        specifier: ^3.840.0
+        version: 3.840.0(@aws-sdk/client-dynamodb@3.840.0)
       dotenv:
         specifier: ^17.0.1
         version: 17.0.1
@@ -14977,6 +14986,12 @@ packages:
 
   /markdown-table@3.0.4:
     resolution: {integrity: sha512-wiYz4+JrLyb/DqW2hkFJxP7Vd7JuTDm77fvbM8VfEQdmSMqcImWeeRbHwZjBjIFki/VaMK2BhFi7oUUZeM5bqw==}
+    dev: false
+
+  /marked@16.2.1:
+    resolution: {integrity: sha512-r3UrXED9lMlHF97jJByry90cwrZBBvZmjG1L68oYfuPMW+uDTnuMbyJDymCWwbTE+f+3LhpNDKfpR3a3saFyjA==}
+    engines: {node: '>= 20'}
+    hasBin: true
     dev: false
 
   /math-intrinsics@1.1.0:

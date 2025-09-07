@@ -124,3 +124,55 @@ export async function getJob(id: string) {
 
     return (response).Items?.[0] || null;
 }
+
+export async function getVersionByName(name:string) {
+    // Validate input
+    if (!name || typeof name !== "string") {
+        throw new Error("'name' must be a non-empty string.");
+    }
+
+    // Define query parameters
+    const params = {
+        TableName: "fem-qa-job-openai-versions", // Table name
+        IndexName: "gsiName",            // GSI to query
+        KeyConditionExpression: "task_name = :n", // Key condition
+        ExpressionAttributeValues: {
+            ":n": name, // Bind name value
+        },
+    };
+
+    try {
+        // Query DynamoDB
+        console.log("Querying DynamoDB with params:", params);
+        const result = await (await getClient()).send(new QueryCommand(params));
+
+        console.log("Query result:", result);
+
+        const prompt = result.Items?.[0]?.prompt || null;
+
+        console.log("Query prompt:", prompt);
+
+        // Return first item or null if no match found
+        return result.Items?.[0];
+    } catch (error:any) {
+        // Log and rethrow error
+        console.error("Failed to query DynamoDB:", error.message);
+        throw new Error("Could not fetch versions by name");
+    }
+}
+
+export async function addTask(Item:any) {
+    const id = autogenerateId();
+    const params = {
+        TableName: "fem-qa-job-openai-versions",
+        Item,
+    };
+
+    try {
+        const data = await (await getClient()).send(new PutCommand(params));
+        console.log("Success - item added:", data);
+    } catch (err) {
+        console.error("Error", err);
+    }
+}
+

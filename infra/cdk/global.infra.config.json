@@ -53,6 +53,19 @@
       ]
     },
     {
+      "name": "job-openai-tasks"
+    },
+    {
+      "name": "job-openai-versions",
+      "globalSecondaryIndexes": [
+        {
+          "indexName": "gsiName",
+          "partitionKey": { "name": "task_name", "type": "STRING" },
+          "projectionType": "ALL"
+        }
+      ]
+    },
+    {
       "name": "job-application-guidance"
     },
     {

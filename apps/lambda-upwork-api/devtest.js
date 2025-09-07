@@ -1,8 +1,5 @@
-
-import dotenv from 'dotenv'
-//import {handler} from "./index.js";
-
-dotenv.config()
+import './devenv.js'
+import {classifyJobs} from "./openai.js";
 
 const { estimateJobs } = await import('./openai.js')
 
@@ -40,6 +37,6 @@ const jobs = [
     }
 ];
 
-console.log(await estimateJobs(jobs))
+console.log(await classifyJobs(jobs))
 
 //console.log(await handler())
