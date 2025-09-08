@@ -1,5 +1,6 @@
 import './devenv.js'
 import {classifyJobs} from "./openai.js";
+import {itemToCard} from "./index.js";
 
 const { estimateJobs } = await import('./openai.js')
 
@@ -37,6 +38,6 @@ const jobs = [
     }
 ];
 
-console.log(await classifyJobs(jobs))
+console.log(await itemToCard(jobs[0]))
 
 //console.log(await handler())

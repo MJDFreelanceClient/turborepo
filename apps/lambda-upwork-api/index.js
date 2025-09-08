@@ -34,7 +34,7 @@ async function jobExists(id, version) {
     }
 }
 
-function itemToCard(item) {
+export function itemToCard(item) {
     // pick out title & description specially
     const { title, description, value, ...rest } = item;
 
@@ -55,7 +55,7 @@ function itemToCard(item) {
             : ""
     }
       ${value ? `<b style="margin: 0 0 8px 0;">${value.value}${value.currency} ${value.type}</b>` : ""}
-      ${description ? `<div style="margin: 0 0 8px 0;">${marked(description)}</div>` : ""}
+      ${description ? `<div style="margin: 0 0 8px 0;">${marked.parse(description)}</div>` : ""}
       <table cellpadding="0" cellspacing="0" style="border-collapse: collapse; width: 100%;">
         ${rows}
       </table>
